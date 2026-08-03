@@ -683,40 +683,72 @@ img,svg{display:block;max-width:100%}
 
 
 /* ─────────────────────────────────────────────
-   OPENING GATE
+   OPENING GATE  —  cinema curtain split
    ───────────────────────────────────────────── */
 .gate{
   position:fixed;
   inset:0;
   z-index:40;
+  visibility:visible;
+}
+.gate.done{visibility:hidden}
+
+/* the two halves that part */
+.gate-panel{
+  position:absolute;
+  top:0;bottom:0;
+  width:50.4%;
+  background:var(--paper);
+  transition:transform 1.15s cubic-bezier(.72,0,.2,1);
+  will-change:transform;
+}
+.gate-panel--l{left:0;border-right:1px solid rgba(183,154,99,.5)}
+.gate-panel--r{right:0}
+
+/* a soft edge so the halves read as physical panels as they part */
+.gate-panel::after{
+  content:"";
+  position:absolute;
+  top:0;bottom:0;
+  width:26px;
+  opacity:0;
+  transition:opacity .5s ease .18s;
+}
+.gate-panel--l::after{right:0;background:linear-gradient(90deg,transparent,rgba(22,22,26,.16))}
+.gate-panel--r::after{left:0;background:linear-gradient(270deg,transparent,rgba(22,22,26,.16))}
+.gate.open .gate-panel::after{opacity:1}
+
+.gate.open .gate-panel--l{transform:translateX(-100.5%)}
+.gate.open .gate-panel--r{transform:translateX(100.5%)}
+
+/* content sits above the seam and clears out first */
+.gate-inner{
+  position:absolute;
+  inset:0;
   display:grid;
   place-items:center;
   padding:calc(var(--pad) + 14px);
-  background:var(--paper);
   text-align:center;
-  transition:opacity .9s ease,visibility .9s;
+  transition:opacity .5s ease,transform .7s cubic-bezier(.3,.7,.3,1);
 }
-.gate::before{
-  content:"";
+.gate.open .gate-inner{opacity:0;transform:scale(.93);pointer-events:none}
+
+/* the frame, drawn over both halves, fades with the content */
+.gate-frame{
   position:absolute;
   inset:9px;
-  border:1px solid var(--oxblood);
-  pointer-events:none;
   max-width:520px;
   margin:0 auto;
+  border:1px solid var(--oxblood);
+  pointer-events:none;
 }
-.gate::after{
+.gate-frame::after{
   content:"";
   position:absolute;
-  inset:14px;
+  inset:5px;
   border:1px solid rgba(183,154,99,.55);
-  pointer-events:none;
-  max-width:510px;
-  margin:0 auto;
 }
-.gate.away{opacity:0;visibility:hidden}
 
-.gate-inner{position:relative;z-index:1}
 .gate .monogram{margin:0 0 44px}
 .gate .monogram .glyph{font-size:5rem}
 .gate .monogram .amp{font-size:2.7rem}
@@ -1009,6 +1041,7 @@ body.locked{overflow:hidden}
   .scroll-cue span{animation:none!important}
   .music .bars i{animation:none!important;height:9px!important}
   .petals{display:none}
+  .gate-panel,.gate-inner{transition:none!important}
   .progress{display:none}
 }
 
@@ -1024,7 +1057,11 @@ body.locked{overflow:hidden}
 <div class="petals" id="petals" aria-hidden="true"></div>
 
 <div class="gate" id="gate" role="dialog" aria-label="Buka kad jemputan">
+  <div class="gate-panel gate-panel--l" aria-hidden="true"></div>
+  <div class="gate-panel gate-panel--r" aria-hidden="true"></div>
+
   <div class="gate-inner">
+    <div class="gate-frame" aria-hidden="true"></div>
     <div class="monogram" aria-label="A dan A">
       <span class="glyph">A</span>
       <span class="amp">&amp;</span>
@@ -1914,14 +1951,17 @@ const gate = $("gate");
 document.body.classList.add("gated");
 
 function openCard(){
-  if (!gate || gate.classList.contains("away")) return;
+  if (!gate || gate.classList.contains("open")) return;
 
-  gate.classList.add("away");
+  // the click itself is the gesture the browser needs for audio
+  setMusic(true);
+
+  gate.classList.add("open");           // content fades, curtains part
   document.body.classList.remove("gated");
 
-  setMusic(true);                       // permitted: we're inside a click
-  setTimeout(startAuto, 1400);          // let the cover settle first
-  setTimeout(() => { gate.hidden = true; }, 1000);
+  const wait = reduced ? 0 : 1500;
+  setTimeout(() => gate.classList.add("done"), wait);   // stop it catching taps
+  setTimeout(startAuto, wait + 400);
 }
 
 $("gateOpen").addEventListener("click", openCard);
