@@ -33,7 +33,7 @@
  * ───────────────────────────────────────────────────────────────────
  */
 
-const SHEET_ID = 'PASTE_YOUR_SHEET_ID_HERE';
+const SHEET_ID = '1oUHskz1Y8KL2yghYnHTdIvPR4xsJe44-AvR1xK5KP98';
 const TAB      = 'RSVP';
 const HEADERS  = ['Masa', 'Nama', 'Bilangan', 'Hadir', 'Ucapan'];
 
