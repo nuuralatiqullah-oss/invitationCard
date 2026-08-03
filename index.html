@@ -517,6 +517,33 @@ img,svg{display:block;max-width:100%}
 }
 
 /* closing */
+.ayat{
+  font-family:var(--display);
+  font-style:italic;
+  font-size:1.25rem;
+  line-height:1.75;
+  color:var(--ink);
+  max-width:26ch;
+  margin:0 auto;
+}
+.ayat-src{
+  margin:16px 0 0;
+  font-size:.7rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+
+.doa-long{
+  font-family:var(--display);
+  font-style:italic;
+  font-size:1.06rem;
+  line-height:1.8;
+  color:var(--ink);
+  max-width:34ch;
+  margin:0 auto;
+}
+
 .doa{
   font-family:var(--display);
   font-style:italic;
@@ -644,6 +671,51 @@ img,svg{display:block;max-width:100%}
   letter-spacing:.06em;
   line-height:1.8;
 }
+
+
+/* ─────────────────────────────────────────────
+   MUSIC TOGGLE
+   ───────────────────────────────────────────── */
+.music{
+  position:fixed;
+  top:22px;
+  right:calc(50% - 260px + 22px);
+  z-index:10;
+  width:44px;height:44px;
+  display:grid;place-items:center;
+  border:1px solid var(--gold-line);
+  background:var(--paper-warm);
+  color:var(--gold);
+  cursor:pointer;
+  border-radius:50%;
+  padding:0;
+  box-shadow:0 4px 14px -8px rgba(22,22,26,.6);
+  transition:color .25s ease,border-color .25s ease;
+}
+@media (max-width:559px){
+  .music{right:22px}
+}
+.music:hover,.music:focus-visible{color:var(--ink);border-color:var(--gold)}
+
+.music .bars{display:flex;align-items:flex-end;gap:2.5px;height:15px}
+.music .bars i{
+  display:block;
+  width:2.5px;
+  background:currentColor;
+  height:5px;
+  transform-origin:bottom;
+}
+.music[aria-pressed="true"] .bars i{animation:eq .9s ease-in-out infinite}
+.music[aria-pressed="true"] .bars i:nth-child(2){animation-delay:.18s}
+.music[aria-pressed="true"] .bars i:nth-child(3){animation-delay:.36s}
+.music[aria-pressed="true"] .bars i:nth-child(4){animation-delay:.09s}
+@keyframes eq{
+  0%,100%{height:4px}
+  50%{height:15px}
+}
+/* paused: a flat line with a slash through it */
+.music .slash{display:none}
+.music[aria-pressed="false"] .slash{display:block}
 
 /* ─────────────────────────────────────────────
    TAB PANELS  (opened from the bar)
@@ -824,6 +896,7 @@ body.locked{overflow:hidden}
   .plate-wrap{transform:none!important;opacity:1!important}
   .art--side img{transform:none!important}
   .scroll-cue span{animation:none!important}
+  .music .bars i{animation:none!important;height:9px!important}
   .progress{display:none}
 }
 
@@ -840,6 +913,19 @@ body.locked{overflow:hidden}
 <div class="edge edge--top" aria-hidden="true"></div>
 <div class="edge edge--bottom" aria-hidden="true"></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
+
+<audio id="bgm" loop preload="none">
+  <source src="music/lagu.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music" id="musicBtn" type="button"
+        aria-pressed="false" aria-label="Main atau henti muzik latar" hidden>
+  <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <svg class="slash" viewBox="0 0 24 24" aria-hidden="true"
+       style="position:absolute;width:26px;height:26px;stroke:currentColor;stroke-width:1.3;fill:none">
+    <path d="M4 20L20 4"/>
+  </svg>
+</button>
 
 <main class="sheet">
 
@@ -875,6 +961,12 @@ body.locked{overflow:hidden}
     <p class="scroll-cue enter d3">Tatal ke bawah<span></span></p>
   </section>
 
+  <!-- ══════════ AYAT ══════════ -->
+  <section class="panel">
+    <p class="ayat">&ldquo;Dan Kami menciptakan kamu berpasang-pasangan&rdquo;</p>
+    <p class="ayat-src">Surah An-Naba&rsquo; &middot; 78:8</p>
+  </section>
+
   <!-- ══════════ SALAM ══════════ -->
   <section class="panel">
     <div class="art art--salam" aria-hidden="true">
@@ -882,7 +974,10 @@ body.locked{overflow:hidden}
     </div>
 
     <p class="bismillah">السلام عليكم</p>
-    <p class="eyebrow">Assalamualaikum W.B.T</p>
+    <p class="eyebrow">Assalamualaikum dan Selamat Sejahtera</p>
+    <p class="body-txt" style="margin-top:14px">
+      Dengan nama Allah yang Maha Pengasih lagi Maha Penyayang
+    </p>
 
     <p class="hosts">
       ZAKARIA BIN MUSTAPHA<br>
@@ -893,8 +988,8 @@ body.locked{overflow:hidden}
     <hr class="rule">
 
     <p class="body-txt">
-      Dengan segala hormatnya menjemput<br>
-      Dato' / Datin / Tuan / Puan / Encik / Cik<br>
+      Dengan penuh rasa kesyukuran, kami ingin menjemput<br>
+      Dato&rsquo; &nbsp;|&nbsp; Datin &nbsp;|&nbsp; Tuan &nbsp;|&nbsp; Puan &nbsp;|&nbsp; Encik &nbsp;|&nbsp; Cik<br>
       ke majlis perkahwinan puteri kami
     </p>
 
@@ -1010,6 +1105,16 @@ body.locked{overflow:hidden}
     <div class="art art--end" aria-hidden="true">
       <img src="art/04.svg" alt="" width="968" height="1159" loading="lazy">
     </div>
+
+    <p class="doa-long">
+      Ya Allah, berkatilah majlis perkahwinan mereka. Satukanlah hati kedua
+      mempelai ini sebagaimana Engkau satukan hati Adam &amp; Hawa, dan
+      sebagaimana Engkau satukan hati Muhammad S.A.W &amp; Siti Khadijah.
+      Semoga Allah S.W.T memberkati mereka serta menghimpunkan mereka
+      kebaikan dan keberkatan di dunia dan di akhirat.
+    </p>
+
+    <hr class="rule">
 
     <p class="doa">
       Semoga dengan kehadiran para hadirin akan memeriahkan lagi majlis ini
@@ -1521,6 +1626,55 @@ let fitTimer;
 addEventListener("resize", () => {
   clearTimeout(fitTimer);
   fitTimer = setTimeout(fitNames, 120);
+});
+
+/* ═══════════════════════════════════════════════════════
+   BACKGROUND MUSIC
+   Browsers refuse to start audio without a user gesture, so the
+   track begins on the visitor's first tap, and the button lets
+   them stop it. If the file is missing the button never appears.
+   ═══════════════════════════════════════════════════════ */
+const bgm = $("bgm");
+const musicBtn = $("musicBtn");
+
+bgm.volume = 0.45;
+
+// only offer the control once we know the file actually exists
+bgm.addEventListener("canplay", () => { musicBtn.hidden = false; }, { once: true });
+bgm.addEventListener("error", () => { musicBtn.hidden = true; });
+bgm.load();
+
+function setMusic(on){
+  musicBtn.setAttribute("aria-pressed", String(on));
+  if (on){
+    bgm.play().catch(() => musicBtn.setAttribute("aria-pressed", "false"));
+  } else {
+    bgm.pause();
+  }
+}
+
+musicBtn.addEventListener("click", () => {
+  setMusic(bgm.paused);
+});
+
+// first tap anywhere starts it, once
+function firstTouch(){
+  if (bgm.paused && !musicBtn.hidden) setMusic(true);
+  removeEventListener("pointerdown", firstTouch);
+  removeEventListener("keydown", firstTouch);
+}
+addEventListener("pointerdown", firstTouch, { once: true });
+addEventListener("keydown", firstTouch, { once: true });
+
+// don't keep playing into a backgrounded tab
+let wasPlaying = false;
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden){
+    wasPlaying = !bgm.paused;
+    bgm.pause();
+  } else if (wasPlaying){
+    setMusic(true);
+  }
 });
 
 /* ═══════════════════════════════════════════════════════
