@@ -241,7 +241,11 @@ img,svg{display:block;max-width:100%}
 .hosts .amp-sm{color:var(--gold);font-family:var(--display);font-style:italic;font-size:1.15rem}
 
 .couple{margin:8px 0 0}
-.couple .name{font-size: clamp(1.9rem, 8.4vw, 2.5rem));margin:2px 0}
+.couple .name{
+  font-size:2.5rem;      /* ceiling — JS shrinks this to fit if needed */
+  white-space:nowrap;
+  margin:2px 0;
+}
 .couple .heart{color:var(--oxblood);font-size:.9rem;margin:6px 0;line-height:1}
 
 /* details */
@@ -1405,6 +1409,38 @@ document.addEventListener("focusin", e => {
   if (openPanel && !openPanel.contains(e.target)) {
     openPanel.querySelector(".tab-close").focus();
   }
+});
+
+/* ═══════════════════════════════════════════════════════
+   FIT THE NAMES TO ONE LINE
+   Measures the rendered text and scales it down only as far
+   as the container requires, so each name stays on a single
+   row at any width without being smaller than it has to be.
+   ═══════════════════════════════════════════════════════ */
+const NAME_CAP = 40;   // px ceiling, matches the 2.5rem in CSS
+const NAME_MIN = 15;   // never go below this
+
+function fitNames(){
+  document.querySelectorAll(".couple .name").forEach(el => {
+    el.style.fontSize = NAME_CAP + "px";
+    const avail = el.clientWidth;          // usable width
+    const text  = el.scrollWidth;          // width the text actually wants
+    if (text > avail && avail > 0){
+      const scaled = Math.floor(NAME_CAP * (avail / text) * 0.99);
+      el.style.fontSize = Math.max(NAME_MIN, scaled) + "px";
+    }
+  });
+}
+
+fitNames();
+
+// webfonts change the metrics, so measure again once they land
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitNames);
+
+let fitTimer;
+addEventListener("resize", () => {
+  clearTimeout(fitTimer);
+  fitTimer = setTimeout(fitNames, 120);
 });
 
 /* ═══════════════════════════════════════════════════════
