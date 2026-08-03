@@ -813,10 +813,17 @@ body.locked{overflow:hidden}
 .enter--plate{transform:scale(.96)}
 .d1{animation-delay:.15s}.d2{animation-delay:.5s}.d3{animation-delay:.75s}
 
+@keyframes fadeOnly{from{opacity:0}to{opacity:1}}
+
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important}
-  .reveal,.enter{opacity:1!important;transform:none!important}
+  /* "Reduce Motion" is a request for less movement, not less clarity.
+     Cross-fades stay; anything that travels across the screen goes. */
+  .reveal{transform:none!important;transition:opacity .7s ease!important}
+  .enter{animation-name:fadeOnly!important}
+  .enter--plate,.enter--bot{transform:none!important}
   .plate-wrap{transform:none!important;opacity:1!important}
+  .art--side img{transform:none!important}
+  .scroll-cue span{animation:none!important}
   .progress{display:none}
 }
 
