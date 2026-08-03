@@ -117,23 +117,6 @@ img,svg{display:block;max-width:100%}
 }
 
 /* ─────────────────────────────────────────────
-   BOTANICALS
-   ───────────────────────────────────────────── */
-.botanical{
-  position:absolute;
-  vector-effect:non-scaling-stroke;
-  pointer-events:none;
-  z-index:0;
-  color:var(--ink);
-  opacity:.85;
-}
-.botanical svg{width:100%;height:auto;overflow:visible}
-
-.bot-tl{top:-6%;left:-34%;width:92%}
-.bot-br{bottom:-4%;right:-32%;width:96%;transform:rotate(180deg)}
-.bot-mid{top:30%;right:-36%;width:60%;opacity:.32}
-
-/* ─────────────────────────────────────────────
    COVER
    ───────────────────────────────────────────── */
 .cover{
@@ -721,18 +704,63 @@ body.locked{overflow:hidden}
 /* ─────────────────────────────────────────────
    MOTION
    ───────────────────────────────────────────── */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.3,1)}
+
+/* staggered reveal — every element rises and fades in */
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity 1s cubic-bezier(.2,.7,.3,1),transform 1s cubic-bezier(.2,.7,.3,1);
+  will-change:opacity,transform;
+}
 .reveal.in{opacity:1;transform:none}
+
+/* soft fade where content meets the frame, top and bottom */
+.edge{
+  position:fixed;
+  left:0;right:0;
+  height:74px;
+  max-width:520px;
+  margin:0 auto;
+  pointer-events:none;
+  z-index:5;
+}
+.edge--top{
+  top:0;
+  background:linear-gradient(var(--paper) 24%,rgba(239,237,227,0));
+}
+.edge--bottom{
+  bottom:calc(var(--bar-h) + env(safe-area-inset-bottom));
+  background:linear-gradient(rgba(239,237,227,0),var(--paper) 76%);
+}
+
+/* scroll progress hairline */
+.progress{
+  position:fixed;
+  top:0;left:0;
+  height:2px;
+  width:0;
+  background:linear-gradient(90deg,var(--gold-line),var(--gold));
+  z-index:9;
+  transition:width .12s linear;
+}
+
+/* cover parallax wrapper */
+.plate-wrap{
+  position:relative;
+  z-index:2;
+  will-change:transform,opacity;
+}
 
 .enter{opacity:0;animation:enter 1.15s cubic-bezier(.2,.7,.3,1) forwards}
 @keyframes enter{to{opacity:1;transform:none}}
 .enter--plate{transform:scale(.96)}
-.enter--bot{transform:translateY(14px)}
 .d1{animation-delay:.15s}.d2{animation-delay:.5s}.d3{animation-delay:.75s}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .reveal,.enter{opacity:1;transform:none}
+  .reveal,.enter{opacity:1!important;transform:none!important}
+  .plate-wrap{transform:none!important;opacity:1!important}
+  .progress{display:none}
 }
 
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
@@ -744,358 +772,17 @@ body.locked{overflow:hidden}
 </head>
 <body>
 
-<!-- ══════════ BOTANICAL SYMBOLS ══════════ -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-
-    <!-- ── hydrangea floret: four rounded petals ── -->
-    <symbol id="floret" viewBox="-13 -13 26 26">
-      <g fill="none" stroke="currentColor" stroke-width=".75" stroke-linejoin="round">
-        <path d="M0 -2 C2.6 -9.4 8.4 -11.4 10.4 -6.6 C12 -2.6 6.2 .4 1.6 -.6Z"/>
-        <path d="M2 .8 C9.4 2 11.4 7.8 6.6 9.8 C2.6 11.4 -.4 5.6 .6 1.2Z"/>
-        <path d="M-.8 2.4 C-1.6 9.8 -7 12 -9.2 7.6 C-11 3.8 -5.6 1 -1.6 1Z"/>
-        <path d="M-2 -1 C-9.4 -2.4 -11.6 -7.8 -7.2 -10 C-3.4 -11.8 -.6 -6.4 -.8 -2.2Z"/>
-        <circle cx="0" cy="0" r="1.2"/>
-        <circle cx="0" cy="0" r="2.4" stroke-dasharray=".6 1.9"/>
-      </g>
-    </symbol>
-
-    <!-- ── unopened floret bud ── -->
-    <symbol id="floret-bud" viewBox="-7 -7 14 14">
-      <g fill="none" stroke="currentColor" stroke-width=".7" stroke-linejoin="round">
-        <path d="M0 -4.6 C3.4 -2.6 3.4 2.6 0 4.6 C-3.4 2.6 -3.4 -2.6 0 -4.6Z"/>
-        <path d="M0 -4.4 L0 4.4"/>
-      </g>
-    </symbol>
-
-    <!-- ── oriental lily: six speckled tepals, fanned stamens ── -->
-    <symbol id="lily" viewBox="-54 -56 108 112">
-      <g fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round">
-
-        <!-- outer tepals -->
-        <g>
-          <g>
-            <path d="M0 4 C-8.5 -9 -10.5 -29 0 -48 C10.5 -29 8.5 -9 0 4Z"/>
-            <path d="M0 1 C-.6 -13 -.4 -29 0 -44"/>
-            <path d="M-3.4 -14 C-1.6 -16 1.6 -16 3.4 -14 M-3 -25 C-1.4 -27 1.4 -27 3 -25"/>
-            <g fill="currentColor" stroke="none">
-              <circle cx="-2.4" cy="-11" r=".7"/><circle cx="2.6" cy="-17" r=".7"/>
-              <circle cx="-2.8" cy="-22" r=".7"/><circle cx="2.2" cy="-28" r=".7"/>
-              <circle cx="-1.8" cy="-33" r=".6"/><circle cx="1.4" cy="-38" r=".6"/>
-            </g>
-          </g>
-        </g>
-
-        <!-- the same tepal, rotated -->
-        <g transform="rotate(120 0 4)">
-          <path d="M0 4 C-8.5 -9 -10.5 -29 0 -48 C10.5 -29 8.5 -9 0 4Z"/>
-          <path d="M0 1 C-.6 -13 -.4 -29 0 -44"/>
-          <path d="M-3.4 -14 C-1.6 -16 1.6 -16 3.4 -14 M-3 -25 C-1.4 -27 1.4 -27 3 -25"/>
-          <g fill="currentColor" stroke="none">
-            <circle cx="-2.4" cy="-11" r=".7"/><circle cx="2.6" cy="-17" r=".7"/>
-            <circle cx="-2.8" cy="-22" r=".7"/><circle cx="2.2" cy="-28" r=".7"/>
-          </g>
-        </g>
-        <g transform="rotate(240 0 4)">
-          <path d="M0 4 C-8.5 -9 -10.5 -29 0 -48 C10.5 -29 8.5 -9 0 4Z"/>
-          <path d="M0 1 C-.6 -13 -.4 -29 0 -44"/>
-          <path d="M-3.4 -14 C-1.6 -16 1.6 -16 3.4 -14 M-3 -25 C-1.4 -27 1.4 -27 3 -25"/>
-          <g fill="currentColor" stroke="none">
-            <circle cx="-2.4" cy="-11" r=".7"/><circle cx="2.6" cy="-17" r=".7"/>
-            <circle cx="-2.8" cy="-22" r=".7"/><circle cx="2.2" cy="-28" r=".7"/>
-          </g>
-        </g>
-
-        <!-- inner tepals, slightly shorter -->
-        <g transform="rotate(60 0 4)">
-          <path d="M0 4 C-7.5 -8 -9 -26 0 -43 C9 -26 7.5 -8 0 4Z"/>
-          <path d="M0 1 C-.5 -12 -.3 -26 0 -39"/>
-          <g fill="currentColor" stroke="none">
-            <circle cx="-2" cy="-12" r=".6"/><circle cx="2.2" cy="-19" r=".6"/>
-            <circle cx="-2.2" cy="-26" r=".6"/>
-          </g>
-        </g>
-        <g transform="rotate(180 0 4)">
-          <path d="M0 4 C-7.5 -8 -9 -26 0 -43 C9 -26 7.5 -8 0 4Z"/>
-          <path d="M0 1 C-.5 -12 -.3 -26 0 -39"/>
-          <g fill="currentColor" stroke="none">
-            <circle cx="-2" cy="-12" r=".6"/><circle cx="2.2" cy="-19" r=".6"/>
-            <circle cx="-2.2" cy="-26" r=".6"/>
-          </g>
-        </g>
-        <g transform="rotate(300 0 4)">
-          <path d="M0 4 C-7.5 -8 -9 -26 0 -43 C9 -26 7.5 -8 0 4Z"/>
-          <path d="M0 1 C-.5 -12 -.3 -26 0 -39"/>
-          <g fill="currentColor" stroke="none">
-            <circle cx="-2" cy="-12" r=".6"/><circle cx="2.2" cy="-19" r=".6"/>
-            <circle cx="-2.2" cy="-26" r=".6"/>
-          </g>
-        </g>
-
-        <!-- stamens with filled anthers -->
-        <g stroke-width=".85">
-          <g transform="rotate(-46 0 4)">
-            <path d="M0 4 C-1.5 -5 -4 -13 -8.5 -20"/>
-            <ellipse cx="-9.6" cy="-22" rx="1.5" ry="3.6" fill="currentColor" stroke="none"
-                     transform="rotate(-32 -9.6 -22)"/>
-          </g>
-          <g transform="rotate(-25 0 4)">
-            <path d="M0 4 C-1.5 -5 -4 -13 -8.5 -20"/>
-            <ellipse cx="-9.6" cy="-22" rx="1.5" ry="3.6" fill="currentColor" stroke="none"
-                     transform="rotate(-32 -9.6 -22)"/>
-          </g>
-          <g transform="rotate(-8 0 4)">
-            <path d="M0 4 C-1.5 -5 -4 -13 -8.5 -20"/>
-            <ellipse cx="-9.6" cy="-22" rx="1.5" ry="3.6" fill="currentColor" stroke="none"
-                     transform="rotate(-32 -9.6 -22)"/>
-          </g>
-          <g transform="rotate(8 0 4) scale(-1 1)">
-            <path d="M0 4 C-1.5 -5 -4 -13 -8.5 -20"/>
-            <ellipse cx="-9.6" cy="-22" rx="1.5" ry="3.6" fill="currentColor" stroke="none"
-                     transform="rotate(-32 -9.6 -22)"/>
-          </g>
-          <g transform="rotate(25 0 4) scale(-1 1)">
-            <path d="M0 4 C-1.5 -5 -4 -13 -8.5 -20"/>
-            <ellipse cx="-9.6" cy="-22" rx="1.5" ry="3.6" fill="currentColor" stroke="none"
-                     transform="rotate(-32 -9.6 -22)"/>
-          </g>
-          <g transform="rotate(46 0 4) scale(-1 1)">
-            <path d="M0 4 C-1.5 -5 -4 -13 -8.5 -20"/>
-            <ellipse cx="-9.6" cy="-22" rx="1.5" ry="3.6" fill="currentColor" stroke="none"
-                     transform="rotate(-32 -9.6 -22)"/>
-          </g>
-          <!-- pistil -->
-          <path d="M0 4 C.5 -6 1.2 -16 2 -26"/>
-          <circle cx="2.2" cy="-27.5" r="1.5" fill="currentColor" stroke="none"/>
-        </g>
-
-        <circle cx="0" cy="4" r="2.2"/>
-      </g>
-    </symbol>
-
-    <!-- ── lily in profile / half-open ── -->
-    <symbol id="lily-side" viewBox="-40 -46 80 92">
-      <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M-2 16 C-16 6 -28 -12 -30 -34 C-20 -20 -10 -6 -3 8Z"/>
-        <path d="M0 16 C-6 -2 -8 -22 -4 -40 C4 -24 5 -4 3 12Z"/>
-        <path d="M2 16 C12 4 24 -12 30 -32 C24 -14 14 0 4 10Z"/>
-        <path d="M-1 15 C-12 16 -22 22 -28 32 C-18 30 -8 24 -2 18Z"/>
-        <path d="M1 15 C11 17 20 24 25 34 C15 31 6 25 2 18Z"/>
-        <path d="M-1 13 C-8 4 -16 -8 -22 -22 M1 13 C4 2 8 -12 12 -24"/>
-        <g stroke-width=".85">
-          <path d="M0 15 C-4 8 -10 2 -16 -3"/>
-          <path d="M0 15 C-2 6 -4 -2 -6 -10"/>
-          <path d="M0 15 C3 7 7 1 12 -4"/>
-          <ellipse cx="-17.4" cy="-4" rx="1.4" ry="3.2" fill="currentColor" stroke="none" transform="rotate(-46 -17.4 -4)"/>
-          <ellipse cx="-6.6" cy="-11.6" rx="1.4" ry="3.2" fill="currentColor" stroke="none" transform="rotate(-14 -6.6 -11.6)"/>
-          <ellipse cx="13.2" cy="-5.4" rx="1.4" ry="3.2" fill="currentColor" stroke="none" transform="rotate(42 13.2 -5.4)"/>
-        </g>
-        <path d="M0 16 C-1 26 -2 34 -1 44"/>
-        <circle cx="0" cy="15" r="2"/>
-      </g>
-    </symbol>
-
-    <!-- ── lily bud on stem ── -->
-    <symbol id="bud" viewBox="-12 -30 24 60">
-      <g fill="none" stroke="currentColor" stroke-width=".95" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M0 -26 C7 -17 7.5 -2 1 8 C-6.5 -2 -7 -17 0 -26Z"/>
-        <path d="M0 -25 C3 -16 3.4 -4 1 7"/>
-        <path d="M0 -25 C-3 -16 -3.4 -4 -1 7"/>
-        <path d="M1 8 C1 16 0 22 -1 28"/>
-        <path d="M1 10 C4 12 7 16 8 21 M0 13 C-3 15 -6 19 -7 24"/>
-      </g>
-    </symbol>
-
-    <!-- ── small daisy / aster ── -->
-    <symbol id="daisy" viewBox="-26 -26 52 52">
-      <g fill="none" stroke="currentColor" stroke-width=".8" stroke-linejoin="round">
-        <g id="daisy-rays">
-          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z"/>
-          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(24)"/>
-          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(48)"/>
-          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(72)"/>
-          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(96)"/>
-          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(120)"/>
-          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(144)"/>
-          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(168)"/>
-          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(192)"/>
-          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(216)"/>
-          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(240)"/>
-          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(264)"/>
-          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(288)"/>
-          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(312)"/>
-          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(336)"/>
-        </g>
-        <circle cx="0" cy="0" r="6.4"/>
-        <g fill="currentColor" stroke="none">
-          <circle cx="-2.6" cy="-2.2" r=".62"/><circle cx=".4" cy="-3.4" r=".62"/>
-          <circle cx="3" cy="-1.4" r=".62"/><circle cx="-3.4" cy="1" r=".62"/>
-          <circle cx="-.6" cy="-.2" r=".62"/><circle cx="2.4" cy="1.8" r=".62"/>
-          <circle cx="-1.6" cy="3.2" r=".62"/><circle cx="1.2" cy="3.6" r=".62"/>
-        </g>
-      </g>
-    </symbol>
-
-    <!-- ── lanceolate leaf ── -->
-    <symbol id="leaf" viewBox="-18 -48 36 96">
-      <g fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round">
-        <path d="M0 45 C-15 22 -16 -14 0 -45 C16 -14 15 22 0 45Z"/>
-        <path d="M0 41 L0 -39"/>
-        <path d="M0 30 C-6 26 -9 20 -10 13 M0 30 C6 26 9 20 10 13
-                 M0 15 C-6 11 -9 5 -10 -2 M0 15 C6 11 9 5 10 -2
-                 M0 0 C-5 -4 -7 -10 -8 -16 M0 0 C5 -4 7 -10 8 -16
-                 M0 -16 C-4 -19 -5 -24 -6 -28 M0 -16 C4 -19 5 -24 6 -28"/>
-      </g>
-    </symbol>
-
-    <!-- ── butterfly with marginal spots ── -->
-    <symbol id="butterfly" viewBox="-36 -32 72 64">
-      <g fill="none" stroke="currentColor" stroke-width=".85" stroke-linecap="round" stroke-linejoin="round">
-        <!-- forewings -->
-        <path d="M-1 -6 C-11 -29 -31 -31 -32 -16 C-33 -5 -19 -2 -2 -1Z"/>
-        <path d="M1 -6 C11 -29 31 -31 32 -16 C33 -5 19 -2 2 -1Z"/>
-        <!-- hindwings -->
-        <path d="M-2 1 C-17 3 -27 13 -23 23 C-18 32 -6 21 -1 6Z"/>
-        <path d="M2 1 C17 3 27 13 23 23 C18 32 6 21 1 6Z"/>
-        <!-- veins -->
-        <path d="M-4 -14 C-13 -20 -21 -23 -27 -22 M-5 -10 C-14 -13 -22 -15 -28 -14
-                 M-4 -17 C-10 -22 -16 -26 -22 -27
-                 M4 -14 C13 -20 21 -23 27 -22 M5 -10 C14 -13 22 -15 28 -14
-                 M4 -17 C10 -22 16 -26 22 -27
-                 M-4 8 C-10 12 -16 17 -19 22 M-3 5 C-9 7 -15 12 -19 17
-                 M4 8 C10 12 16 17 19 22 M3 5 C9 7 15 12 19 17"/>
-        <!-- marginal spots -->
-        <g fill="currentColor" stroke="none">
-          <circle cx="-28" cy="-19" r=".85"/><circle cx="-24" cy="-24" r=".85"/>
-          <circle cx="-19" cy="-27" r=".85"/><circle cx="-13" cy="-27" r=".8"/>
-          <circle cx="28" cy="-19" r=".85"/><circle cx="24" cy="-24" r=".85"/>
-          <circle cx="19" cy="-27" r=".85"/><circle cx="13" cy="-27" r=".8"/>
-          <circle cx="-21" cy="21" r=".8"/><circle cx="-16" cy="24" r=".8"/>
-          <circle cx="-10" cy="22" r=".75"/>
-          <circle cx="21" cy="21" r=".8"/><circle cx="16" cy="24" r=".8"/>
-          <circle cx="10" cy="22" r=".75"/>
-        </g>
-        <!-- body -->
-        <path d="M0 -8 C-1.8 -2 -1.8 7 0 13 C1.8 7 1.8 -2 0 -8Z"/>
-        <path d="M0 -6 L0 11"/>
-        <!-- clubbed antennae -->
-        <path d="M-.8 -9 C-4 -16 -8 -21 -13 -24 M.8 -9 C4 -16 8 -21 13 -24"/>
-        <circle cx="-13.8" cy="-24.6" r="1.1" fill="currentColor" stroke="none"/>
-        <circle cx="13.8" cy="-24.6" r="1.1" fill="currentColor" stroke="none"/>
-      </g>
-    </symbol>
-
-    <!-- ── hydrangea head: dense cluster of florets ── -->
-    <symbol id="hydrangea" viewBox="-64 -64 128 128">
-      <g>
-        <!-- back row, smaller -->
-        <use href="#floret" x="-56" y="-34" width="22" height="22"/>
-        <use href="#floret" x="-38" y="-52" width="22" height="22"/>
-        <use href="#floret" x="-16" y="-58" width="22" height="22"/>
-        <use href="#floret" x="6"   y="-54" width="22" height="22"/>
-        <use href="#floret" x="26"  y="-38" width="22" height="22"/>
-        <use href="#floret" x="38"  y="-16" width="22" height="22"/>
-        <use href="#floret" x="-58" y="-10" width="22" height="22"/>
-
-        <!-- middle row -->
-        <use href="#floret" x="-44" y="-24" width="26" height="26"/>
-        <use href="#floret" x="-24" y="-38" width="26" height="26"/>
-        <use href="#floret" x="-2"  y="-42" width="26" height="26"/>
-        <use href="#floret" x="18"  y="-28" width="26" height="26"/>
-        <use href="#floret" x="30"  y="-6"  width="26" height="26"/>
-        <use href="#floret" x="-50" y="2"   width="26" height="26"/>
-        <use href="#floret" x="-32" y="16"  width="26" height="26"/>
-
-        <!-- front row, largest -->
-        <use href="#floret" x="-30" y="-12" width="30" height="30"/>
-        <use href="#floret" x="-6"  y="-18" width="30" height="30"/>
-        <use href="#floret" x="14"  y="2"   width="30" height="30"/>
-        <use href="#floret" x="-14" y="10"  width="30" height="30"/>
-        <use href="#floret" x="8"   y="24"  width="30" height="30"/>
-        <use href="#floret" x="-34" y="34"  width="28" height="28"/>
-        <use href="#floret" x="-10" y="38"  width="26" height="26"/>
-
-        <!-- buds tucked into the gaps -->
-        <use href="#floret-bud" x="-46" y="-44" width="12" height="12"/>
-        <use href="#floret-bud" x="20"  y="-48" width="12" height="12"/>
-        <use href="#floret-bud" x="42"  y="10"  width="12" height="12"/>
-        <use href="#floret-bud" x="-52" y="24"  width="12" height="12"/>
-        <use href="#floret-bud" x="16"  y="44"  width="12" height="12"/>
-      </g>
-    </symbol>
-
-    <!-- ── stem with a pair of small leaves ── -->
-    <symbol id="sprig" viewBox="-20 -40 40 80">
-      <g fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M0 38 C-2 20 -1 0 2 -36"/>
-        <path d="M0 22 C-8 18 -13 10 -14 1 C-6 4 -1 12 0 20Z"/>
-        <path d="M1 8 C9 5 15 -3 15 -12 C7 -8 2 0 1 7Z"/>
-        <path d="M1 -6 C-6 -9 -11 -16 -11 -24 C-4 -20 0 -13 1 -6Z"/>
-        <path d="M0 20 L-12 2 M1 7 L13 -10 M1 -6 L-9 -21"/>
-      </g>
-    </symbol>
-
-  </defs>
-</svg>
-
 <div class="frame" aria-hidden="true"></div>
+<div class="edge edge--top" aria-hidden="true"></div>
+<div class="edge edge--bottom" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <main class="sheet">
 
   <!-- ══════════ COVER ══════════ -->
   <section class="cover">
-    <div class="botanical bot-tl enter enter--bot d1" aria-hidden="true">
-      <svg viewBox="0 0 320 360">
-        <!-- back layer: leaves and sprigs -->
-        <use href="#leaf" x="6" y="150" width="66" height="185" transform="rotate(-26 39 242)"/>
-        <use href="#leaf" x="164" y="0" width="58" height="165" transform="rotate(40 193 82)"/>
-        <use href="#leaf" x="96" y="240" width="52" height="150" transform="rotate(-8 122 315)"/>
-        <use href="#sprig" x="222" y="130" width="62" height="125" transform="rotate(26 253 192)"/>
-        <use href="#sprig" x="52" y="8" width="54" height="110" transform="rotate(-40 79 63)"/>
-
-        <!-- mid layer: hydrangea head -->
-        <use href="#hydrangea" x="4" y="6" width="172" height="172"/>
-
-        <!-- daisies and buds threading through -->
-        <use href="#daisy" x="176" y="18" width="52" height="52"/>
-        <use href="#daisy" x="12" y="168" width="40" height="40"/>
-        <use href="#daisy" x="232" y="96" width="34" height="34"/>
-        <use href="#bud" x="200" y="128" width="34" height="82" transform="rotate(32 217 169)"/>
-        <use href="#bud" x="58" y="228" width="30" height="74" transform="rotate(-18 73 265)"/>
-
-        <!-- front layer: lilies -->
-        <use href="#lily" x="104" y="92" width="180" height="188" transform="rotate(16 194 186)"/>
-        <use href="#lily-side" x="34" y="196" width="118" height="136" transform="rotate(-24 93 264)"/>
-
-        <!-- butterflies -->
-        <use href="#butterfly" x="206" y="42" width="72" height="64" transform="rotate(-14 242 74)"/>
-        <use href="#butterfly" x="120" y="4" width="52" height="46" transform="rotate(22 146 27)"/>
-      </svg>
-    </div>
-
-    <div class="botanical bot-br enter enter--bot d1" aria-hidden="true">
-      <svg viewBox="0 0 320 360">
-        <use href="#leaf" x="14" y="166" width="62" height="176" transform="rotate(-20 45 254)"/>
-        <use href="#leaf" x="178" y="10" width="56" height="158" transform="rotate(44 206 89)"/>
-        <use href="#sprig" x="212" y="146" width="58" height="118" transform="rotate(20 241 205)"/>
-        <use href="#sprig" x="66" y="18" width="50" height="102" transform="rotate(-34 91 69)"/>
-
-        <use href="#hydrangea" x="16" y="20" width="158" height="158"/>
-
-        <use href="#daisy" x="188" y="34" width="46" height="46"/>
-        <use href="#daisy" x="24" y="182" width="36" height="36"/>
-        <use href="#bud" x="190" y="140" width="32" height="78" transform="rotate(28 206 179)"/>
-        <use href="#bud" x="76" y="240" width="28" height="70" transform="rotate(-14 90 275)"/>
-
-        <use href="#lily" x="112" y="84" width="192" height="200" transform="rotate(12 208 184)"/>
-        <use href="#lily-side" x="44" y="212" width="106" height="122" transform="rotate(-30 97 273)"/>
-
-        <use href="#butterfly" x="16" y="2" width="66" height="58" transform="rotate(18 49 31)"/>
-        <use href="#butterfly" x="238" y="118" width="48" height="42" transform="rotate(-24 262 139)"/>
-      </svg>
-    </div>
-
-    <div class="plate enter enter--plate d2">
+    <div class="plate-wrap">
+      <div class="plate enter enter--plate d2">
       <p class="eyebrow">Majlis Kesyukuran</p>
 
       <div class="monogram" aria-label="A dan A">
@@ -1111,13 +798,14 @@ body.locked{overflow:hidden}
 
       <p class="names">ANIS &amp; ATIQ</p>
       <p class="when">SABTU &nbsp;|&nbsp; 26.09.2026</p>
+      </div>
     </div>
 
     <p class="scroll-cue enter d3">Tatal<span></span></p>
   </section>
 
   <!-- ══════════ SALAM ══════════ -->
-  <section class="panel reveal">
+  <section class="panel">
     <p class="bismillah">السلام عليكم</p>
     <p class="eyebrow">Assalamualaikum W.B.T</p>
 
@@ -1143,7 +831,7 @@ body.locked{overflow:hidden}
   </section>
 
   <!-- ══════════ BUTIRAN ══════════ -->
-  <section class="panel panel--tight reveal">
+  <section class="panel panel--tight">
     <hr class="rule">
 
     <dl class="detail">
@@ -1173,7 +861,7 @@ body.locked{overflow:hidden}
   </section>
 
   <!-- ══════════ ATURCARA ══════════ -->
-  <section class="panel panel--tight reveal">
+  <section class="panel panel--tight">
     <hr class="rule">
     <p class="eyebrow">Aturcara Majlis</p>
 
@@ -1185,7 +873,7 @@ body.locked{overflow:hidden}
   </section>
 
   <!-- ══════════ COUNTDOWN ══════════ -->
-  <section class="panel panel--tight reveal">
+  <section class="panel panel--tight">
     <hr class="rule">
     <p class="eyebrow">Majlis akan bermula</p>
 
@@ -1200,7 +888,7 @@ body.locked{overflow:hidden}
   </section>
 
   <!-- ══════════ KEHADIRAN ══════════ -->
-  <section class="panel panel--tight reveal" id="kehadiran">
+  <section class="panel panel--tight" id="kehadiran">
     <hr class="rule">
     <p class="eyebrow">Kehadiran</p>
 
@@ -1211,7 +899,7 @@ body.locked{overflow:hidden}
   </section>
 
   <!-- ══════════ UCAPAN ══════════ -->
-  <section class="panel panel--tight reveal" id="ucapan">
+  <section class="panel panel--tight" id="ucapan">
     <hr class="rule">
     <p class="eyebrow">Ucapan</p>
 
@@ -1222,19 +910,7 @@ body.locked{overflow:hidden}
   </section>
 
   <!-- ══════════ PENUTUP ══════════ -->
-  <section class="panel reveal" style="overflow:hidden">
-    <div class="botanical bot-mid" aria-hidden="true">
-      <svg viewBox="0 0 220 280">
-        <use href="#leaf" x="96" y="112" width="54" height="152" transform="rotate(22 123 188)"/>
-        <use href="#sprig" x="4" y="140" width="52" height="106" transform="rotate(-24 30 193)"/>
-        <use href="#hydrangea" x="14" y="14" width="134" height="134"/>
-        <use href="#daisy" x="146" y="30" width="42" height="42"/>
-        <use href="#bud" x="158" y="118" width="30" height="72" transform="rotate(24 173 154)"/>
-        <use href="#lily-side" x="82" y="150" width="100" height="116" transform="rotate(14 132 208)"/>
-        <use href="#butterfly" x="150" y="76" width="50" height="44" transform="rotate(-16 175 98)"/>
-      </svg>
-    </div>
-
+  <section class="panel">
     <hr class="rule">
     <p class="doa">
       Semoga dengan kehadiran para hadirin akan memeriahkan lagi majlis ini
@@ -1708,14 +1384,62 @@ document.addEventListener("focusin", e => {
   }
 });
 
-/* — scroll reveals — */
+/* ═══════════════════════════════════════════════════════
+   SCROLL MOTION
+   ═══════════════════════════════════════════════════════ */
+
+/* every direct child of a panel reveals on its own, in sequence */
+document.querySelectorAll(".panel").forEach(panel => {
+  [...panel.children].forEach((el, i) => {
+    if (el.hasAttribute("hidden")) return;   // shown later by JS — leave it alone
+    el.classList.add("reveal");
+    el.dataset.delay = Math.min(i * 90, 420);
+  });
+});
+
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    if (!e.isIntersecting) return;
+    e.target.style.transitionDelay = (e.target.dataset.delay || 0) + "ms";
+    e.target.classList.add("in");
+    io.unobserve(e.target);
   });
-}, { threshold: .12, rootMargin: "0px 0px -8% 0px" });
+}, { threshold: .15, rootMargin: "0px 0px -10% 0px" });
 
 document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+/* cover drifts and fades as it scrolls away; progress hairline tracks the page */
+const plateWrap = document.querySelector(".plate-wrap");
+const cue = document.querySelector(".scroll-cue");
+const bar = $("progress");
+const reduced = matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+let ticking = false;
+
+function onScroll(){
+  const y = window.scrollY;
+  const vh = window.innerHeight;
+
+  const max = document.documentElement.scrollHeight - vh;
+  bar.style.width = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + "%";
+
+  if (!reduced && y < vh){
+    const p = y / vh;
+    plateWrap.style.transform = `translateY(${y * .28}px) scale(${1 - p * .07})`;
+    plateWrap.style.opacity = String(Math.max(0, 1 - p * 1.5));
+    if (cue) cue.style.opacity = String(Math.max(0, 1 - p * 3));
+  }
+  ticking = false;
+}
+
+addEventListener("scroll", () => {
+  if (!ticking){
+    requestAnimationFrame(onScroll);
+    ticking = true;
+  }
+}, { passive: true });
+
+onScroll();
 </script>
 </body>
 </html>
