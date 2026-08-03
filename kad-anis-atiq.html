@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anis &amp; Atiq — Majlis Kesyukuran</title>
+<meta name="description" content="Majlis Kesyukuran Anis &amp; Atiq · Sabtu, 26 September 2026 · Kampung Kok Bedullah, Tumpat, Kelantan">
+<meta name="theme-color" content="#EFEDE3">
+<meta property="og:title" content="Majlis Kesyukuran — Anis &amp; Atiq">
+<meta property="og:description" content="Sabtu, 26 September 2026 · 12:00 PM – 5:00 PM · Tumpat, Kelantan">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&family=Amiri&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────
+   TOKENS
+   ───────────────────────────────────────────── */
+:root{
+  --paper:#EFEDE3;
+  --paper-warm:#F6F4EC;
+  --ink:#16161A;           /* darkened for contrast */
+  --ink-soft:#3E3E3C;      /* darkened for contrast */
+  --gold:#7F6128;          /* text-safe gold */
+  --gold-line:#B79A63;     /* decorative gold only */
+  --oxblood:#7A2E27;
+  --rule:rgba(22,22,26,.26);
+
+  --display:"Cormorant Garamond",Georgia,serif;
+  --label:"Jost",-apple-system,"Segoe UI",sans-serif;
+  --arabic:"Amiri",serif;
+
+  --pad:clamp(20px,6vw,44px);
+  --bar-h:70px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--label);
+  font-weight:400;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  opacity:.5;
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(127,97,40,.07), transparent 55%),
+    radial-gradient(circle at 82% 78%, rgba(122,46,39,.05), transparent 50%);
+}
+
+img,svg{display:block;max-width:100%}
+
+/* ─────────────────────────────────────────────
+   SHEET + FRAME
+   ───────────────────────────────────────────── */
+.sheet{
+  position:relative;
+  z-index:1;
+  max-width:520px;
+  margin:0 auto;
+  padding-bottom:calc(var(--bar-h) + 20px + env(safe-area-inset-bottom));
+}
+
+.frame{
+  position:fixed;
+  inset:9px 9px calc(var(--bar-h) + 9px + env(safe-area-inset-bottom)) 9px;
+  border:1px solid var(--oxblood);
+  pointer-events:none;
+  z-index:6;
+  max-width:520px;
+  margin:0 auto;
+}
+.frame::after{
+  content:"";
+  position:absolute;
+  inset:5px;
+  border:1px solid rgba(183,154,99,.55);
+}
+
+/* ─────────────────────────────────────────────
+   TYPE ROLES  (all small sizes stepped up)
+   ───────────────────────────────────────────── */
+.eyebrow{
+  font-size:.74rem;
+  font-weight:400;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin:0;
+}
+
+.script{
+  font-family:var(--display);
+  font-style:italic;
+  font-weight:500;
+  color:var(--gold);
+  line-height:1.25;
+}
+
+.body-txt{
+  font-size:.95rem;
+  letter-spacing:.035em;
+  color:var(--ink-soft);
+  max-width:33ch;
+  margin-inline:auto;
+}
+
+/* ─────────────────────────────────────────────
+   BOTANICALS
+   ───────────────────────────────────────────── */
+.botanical{
+  position:absolute;
+  vector-effect:non-scaling-stroke;
+  pointer-events:none;
+  z-index:0;
+  color:var(--ink);
+  opacity:.85;
+}
+.botanical svg{width:100%;height:auto;overflow:visible}
+
+.bot-tl{top:-6%;left:-34%;width:92%}
+.bot-br{bottom:-4%;right:-32%;width:96%;transform:rotate(180deg)}
+.bot-mid{top:30%;right:-36%;width:60%;opacity:.32}
+
+/* ─────────────────────────────────────────────
+   COVER
+   ───────────────────────────────────────────── */
+.cover{
+  position:relative;
+  min-height:100svh;
+  display:grid;
+  place-items:center;
+  padding:calc(var(--pad) + 14px);
+  overflow:hidden;
+}
+
+.plate{
+  position:relative;
+  z-index:2;
+  width:min(266px,70vw);
+  padding:38px 22px 32px;
+  text-align:center;
+  background:var(--paper-warm);
+  border:1px solid var(--gold-line);
+  outline:1px solid rgba(183,154,99,.6);
+  outline-offset:5px;
+  box-shadow:0 18px 44px -26px rgba(22,22,26,.5);
+}
+
+.monogram{
+  font-family:var(--display);
+  line-height:.82;
+  margin:26px 0 22px;
+  color:var(--ink);
+}
+.monogram .glyph{display:block;font-size:4.6rem;font-weight:300}
+.monogram .glyph:first-child{margin-left:-.34em}
+.monogram .glyph:last-child{margin-left:.34em}
+.monogram .amp{
+  display:block;
+  font-size:2.5rem;
+  font-style:italic;
+  color:var(--gold);
+  margin:-.34em 0;
+}
+
+.flourish{width:52px;margin:0 auto 18px;color:var(--gold-line)}
+
+.plate .names{
+  font-size:1.02rem;
+  font-weight:500;
+  letter-spacing:.2em;
+  margin:0 0 7px;
+}
+.plate .when{
+  font-size:.84rem;
+  letter-spacing:.16em;
+  color:var(--ink-soft);
+  margin:0;
+}
+
+.scroll-cue{
+  position:absolute;
+  bottom:26px;
+  left:0;right:0;
+  z-index:2;
+  text-align:center;
+  font-size:.66rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+}
+.scroll-cue span{
+  display:block;
+  width:1px;height:26px;
+  margin:9px auto 0;
+  background:linear-gradient(var(--gold-line),transparent);
+  animation:drift 2.4s ease-in-out infinite;
+}
+@keyframes drift{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ─────────────────────────────────────────────
+   SECTIONS
+   ───────────────────────────────────────────── */
+.panel{position:relative;padding:56px var(--pad);text-align:center}
+.panel--tight{padding-top:14px}
+
+.rule{
+  width:100%;max-width:190px;height:1px;
+  margin:34px auto;border:0;
+  background:var(--rule);
+  position:relative;
+}
+.rule::after{
+  content:"❧";
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-52%);
+  background:var(--paper);
+  padding:0 12px;
+  color:var(--gold-line);
+  font-size:.85rem;line-height:1;
+}
+
+.bismillah{
+  font-family:var(--arabic);
+  font-size:1.95rem;
+  margin:0 0 12px;
+  direction:rtl;
+  line-height:1.9;
+}
+
+.hosts{
+  font-size:.94rem;
+  font-weight:500;
+  letter-spacing:.14em;
+  line-height:2.1;
+  margin:26px 0 0;
+}
+.hosts .amp-sm{color:var(--gold);font-family:var(--display);font-style:italic;font-size:1.15rem}
+
+.couple{margin:8px 0 0}
+.couple .name{font-size:clamp(1.9rem,8.4vw,2.5rem);margin:2px 0}
+.couple .heart{color:var(--oxblood);font-size:.9rem;margin:6px 0;line-height:1}
+
+/* details */
+.detail{display:grid;gap:5px;margin:30px 0}
+.detail dt{
+  font-size:.68rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+.detail dd{
+  margin:0;
+  font-size:1rem;
+  font-weight:400;
+  letter-spacing:.09em;
+  line-height:1.7;
+}
+.detail .big-date{
+  font-family:var(--display);
+  font-size:3.7rem;
+  font-weight:400;
+  line-height:1;
+  letter-spacing:0;
+  margin:2px 0 4px;
+}
+.detail .hijri{
+  display:block;
+  font-size:.82rem;
+  letter-spacing:.12em;
+  color:var(--ink-soft);
+  margin-top:7px;
+}
+
+/* aturcara */
+.agenda{list-style:none;margin:26px auto 0;padding:0;max-width:280px;text-align:left}
+.agenda li{
+  display:flex;align-items:baseline;gap:14px;
+  padding:14px 0;
+  border-bottom:1px solid var(--rule);
+}
+.agenda li:last-child{border-bottom:0}
+.agenda time{
+  flex:0 0 84px;
+  font-family:var(--display);
+  font-size:1.15rem;font-weight:500;
+  color:var(--gold);
+  letter-spacing:.02em;
+}
+.agenda p{margin:0;font-size:.85rem;letter-spacing:.13em;text-transform:uppercase}
+
+/* countdown */
+.countdown{display:flex;justify-content:center;gap:6px;margin:28px 0 0}
+.unit{flex:1 1 0;max-width:80px;padding:14px 4px 11px;border:1px solid var(--rule)}
+.unit b{display:block;font-family:var(--display);font-size:1.85rem;font-weight:500;line-height:1}
+.unit small{
+  display:block;margin-top:7px;
+  font-size:.62rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-soft);
+}
+
+/* contacts */
+.contacts{display:grid;gap:10px;margin:26px 0 0}
+.contact{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:15px 16px;
+  border:1px solid var(--rule);
+  text-decoration:none;color:inherit;
+  background:rgba(246,244,236,.6);
+  transition:border-color .25s ease,background .25s ease;
+}
+.contact:hover,.contact:focus-visible{border-color:var(--gold-line);background:var(--paper-warm)}
+.contact .who{text-align:left}
+.contact .who b{display:block;font-size:.88rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+.contact .who small{font-size:.8rem;letter-spacing:.06em;color:var(--ink-soft)}
+.contact .go{color:var(--gold);font-size:1rem}
+
+/* buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  width:100%;padding:16px 20px;margin-top:12px;
+  border:1px solid var(--ink);
+  background:transparent;color:var(--ink);
+  font-family:var(--label);
+  font-size:.78rem;font-weight:400;
+  letter-spacing:.22em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;
+  transition:background .3s ease,color .3s ease;
+}
+.btn:hover,.btn:focus-visible{background:var(--ink);color:var(--paper)}
+.btn--gold{border-color:var(--gold);color:var(--gold)}
+.btn--gold:hover,.btn--gold:focus-visible{background:var(--gold);color:var(--paper-warm)}
+.btn[disabled]{opacity:.5;cursor:default}
+
+/* ─────────────────────────────────────────────
+   RSVP FORM + LIST
+   ───────────────────────────────────────────── */
+.form{display:grid;gap:12px;margin:24px 0 0;text-align:left}
+
+.field label{
+  display:block;
+  font-size:.7rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:6px;
+}
+.field input,.field textarea,.field select{
+  width:100%;
+  padding:13px 14px;
+  border:1px solid var(--rule);
+  background:var(--paper-warm);
+  color:var(--ink);
+  font-family:var(--label);
+  font-size:.95rem;
+  font-weight:400;
+  letter-spacing:.03em;
+  border-radius:0;
+  -webkit-appearance:none;
+  appearance:none;
+}
+.field textarea{min-height:82px;resize:vertical;line-height:1.6}
+.field input:focus,.field textarea:focus,.field select:focus{
+  outline:none;border-color:var(--gold);background:#fff;
+}
+
+.choice{display:flex;gap:10px}
+.choice button{
+  flex:1;
+  padding:13px 8px;
+  border:1px solid var(--rule);
+  background:var(--paper-warm);
+  color:var(--ink-soft);
+  font-family:var(--label);
+  font-size:.76rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all .25s ease;
+}
+.choice button[aria-pressed="true"]{
+  border-color:var(--gold);
+  background:var(--gold);
+  color:var(--paper-warm);
+}
+
+.tally{
+  margin:24px 0 4px;
+  font-family:var(--display);
+  font-size:2.9rem;
+  font-weight:500;
+  line-height:1;
+  color:var(--ink);
+}
+.tally-label{
+  font-size:.72rem;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  margin:0;
+}
+
+.guests{list-style:none;margin:26px 0 0;padding:0;text-align:left;display:grid;gap:1px;background:var(--rule)}
+.guests li{background:var(--paper);padding:15px 4px}
+.guests .g-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.guests .g-name{font-size:.92rem;font-weight:500;letter-spacing:.06em}
+.guests .g-pax{
+  flex:none;
+  font-size:.74rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold);
+}
+.guests .g-msg{
+  margin:7px 0 0;
+  font-family:var(--display);
+  font-style:italic;
+  font-size:1rem;
+  line-height:1.6;
+  color:var(--ink-soft);
+}
+
+.note{
+  margin:14px 0 0;
+  font-size:.82rem;
+  letter-spacing:.03em;
+  color:var(--ink-soft);
+}
+.note--warn{color:var(--oxblood)}
+
+/* ─────────────────────────────────────────────
+   HADIAH
+   ───────────────────────────────────────────── */
+.qr-card{
+  margin:26px auto 0;
+  max-width:250px;
+  padding:20px;
+  background:var(--paper-warm);
+  border:1px solid var(--gold-line);
+  outline:1px solid rgba(183,154,99,.45);
+  outline-offset:4px;
+}
+.qr-card img{width:100%;height:auto}
+.qr-slot{
+  aspect-ratio:1;
+  display:grid;
+  place-items:center;
+  padding:18px;
+  border:1px dashed var(--rule);
+  font-size:.78rem;
+  line-height:1.6;
+  color:var(--ink-soft);
+  text-align:center;
+}
+.qr-name{
+  margin:16px 0 0;
+  font-size:.86rem;
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.qr-bank{
+  margin:3px 0 0;
+  font-size:.8rem;
+  letter-spacing:.06em;
+  color:var(--ink-soft);
+}
+
+/* closing */
+.doa{
+  font-family:var(--display);
+  font-style:italic;
+  font-size:1.2rem;
+  line-height:1.85;
+  color:var(--ink);
+  max-width:30ch;
+  margin:0 auto;
+}
+.signoff{
+  margin-top:40px;
+  font-size:.68rem;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+}
+
+/* ─────────────────────────────────────────────
+   KEHADIRAN + UCAPAN on the scroll
+   ───────────────────────────────────────────── */
+.headcount{
+  margin:26px 0 0;
+  font-family:var(--display);
+  font-size:clamp(4rem,20vw,5.6rem);
+  font-weight:400;
+  line-height:.9;
+  color:var(--ink);
+}
+.headcount-label{
+  margin:8px 0 0;
+  font-size:.74rem;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+}
+
+.wishes{
+  list-style:none;
+  margin:28px 0 0;
+  padding:0;
+  text-align:left;
+  display:grid;
+  gap:18px;
+}
+.wishes li{
+  padding:20px 20px 18px;
+  background:var(--paper-warm);
+  border:1px solid var(--rule);
+  position:relative;
+}
+.wishes li::before{
+  content:"\201C";
+  position:absolute;
+  top:2px;left:14px;
+  font-family:var(--display);
+  font-size:3rem;
+  line-height:1;
+  color:var(--gold-line);
+}
+.wishes blockquote{
+  margin:0;
+  padding-left:22px;
+  font-family:var(--display);
+  font-style:italic;
+  font-size:1.1rem;
+  line-height:1.65;
+  color:var(--ink);
+}
+.wishes figcaption,.wishes .from{
+  display:block;
+  margin:12px 0 0 22px;
+  font-size:.76rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+
+.wishes--collapsed{
+  max-height:430px;
+  overflow:hidden;
+  -webkit-mask-image:linear-gradient(#000 68%,transparent);
+  mask-image:linear-gradient(#000 68%,transparent);
+}
+
+/* contact rows inside the Hubungi panel */
+.contact-card{
+  padding:16px;
+  border:1px solid var(--rule);
+  background:rgba(246,244,236,.6);
+  text-align:left;
+}
+.contact-card .who b{
+  display:block;font-size:.92rem;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+}
+.contact-card .who small{
+  display:block;font-size:.82rem;letter-spacing:.06em;color:var(--ink-soft);
+}
+.contact-acts{display:flex;gap:8px;margin-top:12px}
+.contact-acts a{
+  flex:1;
+  padding:11px 6px;
+  text-align:center;text-decoration:none;
+  border:1px solid var(--rule);
+  color:var(--ink);
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  transition:border-color .25s ease,color .25s ease;
+}
+.contact-acts a:hover,.contact-acts a:focus-visible{border-color:var(--gold);color:var(--gold)}
+
+/* map embed */
+.map-embed{
+  margin:22px 0 0;
+  border:1px solid var(--gold-line);
+  outline:1px solid rgba(183,154,99,.45);
+  outline-offset:4px;
+  aspect-ratio:4/3;
+  background:var(--paper-warm);
+}
+.map-embed iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(.35) contrast(.95)}
+
+.addr{
+  margin:22px 0 0;
+  font-size:1rem;
+  letter-spacing:.06em;
+  line-height:1.8;
+}
+
+/* ─────────────────────────────────────────────
+   TAB PANELS  (opened from the bar)
+   ───────────────────────────────────────────── */
+.scrim{
+  position:fixed;inset:0;z-index:20;
+  background:rgba(22,22,26,.5);
+  opacity:0;visibility:hidden;
+  transition:opacity .3s ease,visibility .3s;
+  -webkit-backdrop-filter:blur(2px);
+  backdrop-filter:blur(2px);
+}
+.scrim.open{opacity:1;visibility:visible}
+
+.tabpanel{
+  position:fixed;
+  bottom:0;left:0;right:0;
+  z-index:21;
+  max-width:520px;
+  margin:0 auto;
+  max-height:88svh;
+  display:flex;
+  flex-direction:column;
+  background:var(--paper);
+  border-top:1px solid var(--oxblood);
+  transform:translateY(101%);
+  transition:transform .38s cubic-bezier(.22,.75,.3,1);
+  visibility:hidden;
+}
+.tabpanel.open{transform:translateY(0);visibility:visible}
+
+.tabpanel::before{
+  content:"";
+  position:absolute;
+  inset:5px 5px 0 5px;
+  border:1px solid rgba(183,154,99,.55);
+  border-bottom:0;
+  pointer-events:none;
+}
+
+.tab-head{
+  flex:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:20px var(--pad) 14px;
+  border-bottom:1px solid var(--rule);
+}
+.tab-head h2{
+  margin:0;
+  font-family:var(--label);
+  font-size:.78rem;
+  font-weight:400;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+.tab-close{
+  flex:none;
+  width:38px;height:38px;
+  display:grid;place-items:center;
+  border:1px solid var(--rule);
+  background:transparent;
+  color:var(--ink);
+  font-size:1.1rem;
+  line-height:1;
+  cursor:pointer;
+  transition:border-color .25s ease,color .25s ease;
+}
+.tab-close:hover,.tab-close:focus-visible{border-color:var(--gold);color:var(--gold)}
+
+.tab-body{
+  flex:1 1 auto;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;
+  padding:22px var(--pad) calc(30px + env(safe-area-inset-bottom));
+  text-align:center;
+}
+
+body.locked{overflow:hidden}
+
+/* ─────────────────────────────────────────────
+   ACTION BAR
+   ───────────────────────────────────────────── */
+.bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:8;
+  max-width:520px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(5,1fr);
+  background:var(--paper-warm);
+  border-top:1px solid var(--oxblood);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.bar a,.bar button{
+  padding:13px 2px 12px;
+  text-align:center;text-decoration:none;
+  background:transparent;
+  border:0;
+  border-right:1px solid var(--rule);
+  color:var(--ink);
+  font-family:var(--label);
+  font-size:.62rem;
+  font-weight:400;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:color .2s ease;
+}
+.bar > :last-child{border-right:0}
+.bar a:hover,.bar a:focus-visible,
+.bar button:hover,.bar button:focus-visible{color:var(--gold)}
+.bar svg{width:18px;height:18px;margin:0 auto 5px;stroke:currentColor;fill:none;stroke-width:1.3}
+
+/* ─────────────────────────────────────────────
+   MOTION
+   ───────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+.enter{opacity:0;animation:enter 1.15s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes enter{to{opacity:1;transform:none}}
+.enter--plate{transform:scale(.96)}
+.enter--bot{transform:translateY(14px)}
+.d1{animation-delay:.15s}.d2{animation-delay:.5s}.d3{animation-delay:.75s}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.enter{opacity:1;transform:none}
+}
+
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+@media (min-width:560px){
+  .frame{inset:16px 16px calc(var(--bar-h) + 16px) 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ BOTANICAL SYMBOLS ══════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+
+    <!-- ── hydrangea floret: four rounded petals ── -->
+    <symbol id="floret" viewBox="-13 -13 26 26">
+      <g fill="none" stroke="currentColor" stroke-width=".75" stroke-linejoin="round">
+        <path d="M0 -2 C2.6 -9.4 8.4 -11.4 10.4 -6.6 C12 -2.6 6.2 .4 1.6 -.6Z"/>
+        <path d="M2 .8 C9.4 2 11.4 7.8 6.6 9.8 C2.6 11.4 -.4 5.6 .6 1.2Z"/>
+        <path d="M-.8 2.4 C-1.6 9.8 -7 12 -9.2 7.6 C-11 3.8 -5.6 1 -1.6 1Z"/>
+        <path d="M-2 -1 C-9.4 -2.4 -11.6 -7.8 -7.2 -10 C-3.4 -11.8 -.6 -6.4 -.8 -2.2Z"/>
+        <circle cx="0" cy="0" r="1.2"/>
+        <circle cx="0" cy="0" r="2.4" stroke-dasharray=".6 1.9"/>
+      </g>
+    </symbol>
+
+    <!-- ── unopened floret bud ── -->
+    <symbol id="floret-bud" viewBox="-7 -7 14 14">
+      <g fill="none" stroke="currentColor" stroke-width=".7" stroke-linejoin="round">
+        <path d="M0 -4.6 C3.4 -2.6 3.4 2.6 0 4.6 C-3.4 2.6 -3.4 -2.6 0 -4.6Z"/>
+        <path d="M0 -4.4 L0 4.4"/>
+      </g>
+    </symbol>
+
+    <!-- ── oriental lily: six speckled tepals, fanned stamens ── -->
+    <symbol id="lily" viewBox="-54 -56 108 112">
+      <g fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round">
+
+        <!-- outer tepals -->
+        <g>
+          <g>
+            <path d="M0 4 C-8.5 -9 -10.5 -29 0 -48 C10.5 -29 8.5 -9 0 4Z"/>
+            <path d="M0 1 C-.6 -13 -.4 -29 0 -44"/>
+            <path d="M-3.4 -14 C-1.6 -16 1.6 -16 3.4 -14 M-3 -25 C-1.4 -27 1.4 -27 3 -25"/>
+            <g fill="currentColor" stroke="none">
+              <circle cx="-2.4" cy="-11" r=".7"/><circle cx="2.6" cy="-17" r=".7"/>
+              <circle cx="-2.8" cy="-22" r=".7"/><circle cx="2.2" cy="-28" r=".7"/>
+              <circle cx="-1.8" cy="-33" r=".6"/><circle cx="1.4" cy="-38" r=".6"/>
+            </g>
+          </g>
+        </g>
+
+        <!-- the same tepal, rotated -->
+        <g transform="rotate(120 0 4)">
+          <path d="M0 4 C-8.5 -9 -10.5 -29 0 -48 C10.5 -29 8.5 -9 0 4Z"/>
+          <path d="M0 1 C-.6 -13 -.4 -29 0 -44"/>
+          <path d="M-3.4 -14 C-1.6 -16 1.6 -16 3.4 -14 M-3 -25 C-1.4 -27 1.4 -27 3 -25"/>
+          <g fill="currentColor" stroke="none">
+            <circle cx="-2.4" cy="-11" r=".7"/><circle cx="2.6" cy="-17" r=".7"/>
+            <circle cx="-2.8" cy="-22" r=".7"/><circle cx="2.2" cy="-28" r=".7"/>
+          </g>
+        </g>
+        <g transform="rotate(240 0 4)">
+          <path d="M0 4 C-8.5 -9 -10.5 -29 0 -48 C10.5 -29 8.5 -9 0 4Z"/>
+          <path d="M0 1 C-.6 -13 -.4 -29 0 -44"/>
+          <path d="M-3.4 -14 C-1.6 -16 1.6 -16 3.4 -14 M-3 -25 C-1.4 -27 1.4 -27 3 -25"/>
+          <g fill="currentColor" stroke="none">
+            <circle cx="-2.4" cy="-11" r=".7"/><circle cx="2.6" cy="-17" r=".7"/>
+            <circle cx="-2.8" cy="-22" r=".7"/><circle cx="2.2" cy="-28" r=".7"/>
+          </g>
+        </g>
+
+        <!-- inner tepals, slightly shorter -->
+        <g transform="rotate(60 0 4)">
+          <path d="M0 4 C-7.5 -8 -9 -26 0 -43 C9 -26 7.5 -8 0 4Z"/>
+          <path d="M0 1 C-.5 -12 -.3 -26 0 -39"/>
+          <g fill="currentColor" stroke="none">
+            <circle cx="-2" cy="-12" r=".6"/><circle cx="2.2" cy="-19" r=".6"/>
+            <circle cx="-2.2" cy="-26" r=".6"/>
+          </g>
+        </g>
+        <g transform="rotate(180 0 4)">
+          <path d="M0 4 C-7.5 -8 -9 -26 0 -43 C9 -26 7.5 -8 0 4Z"/>
+          <path d="M0 1 C-.5 -12 -.3 -26 0 -39"/>
+          <g fill="currentColor" stroke="none">
+            <circle cx="-2" cy="-12" r=".6"/><circle cx="2.2" cy="-19" r=".6"/>
+            <circle cx="-2.2" cy="-26" r=".6"/>
+          </g>
+        </g>
+        <g transform="rotate(300 0 4)">
+          <path d="M0 4 C-7.5 -8 -9 -26 0 -43 C9 -26 7.5 -8 0 4Z"/>
+          <path d="M0 1 C-.5 -12 -.3 -26 0 -39"/>
+          <g fill="currentColor" stroke="none">
+            <circle cx="-2" cy="-12" r=".6"/><circle cx="2.2" cy="-19" r=".6"/>
+            <circle cx="-2.2" cy="-26" r=".6"/>
+          </g>
+        </g>
+
+        <!-- stamens with filled anthers -->
+        <g stroke-width=".85">
+          <g transform="rotate(-46 0 4)">
+            <path d="M0 4 C-1.5 -5 -4 -13 -8.5 -20"/>
+            <ellipse cx="-9.6" cy="-22" rx="1.5" ry="3.6" fill="currentColor" stroke="none"
+                     transform="rotate(-32 -9.6 -22)"/>
+          </g>
+          <g transform="rotate(-25 0 4)">
+            <path d="M0 4 C-1.5 -5 -4 -13 -8.5 -20"/>
+            <ellipse cx="-9.6" cy="-22" rx="1.5" ry="3.6" fill="currentColor" stroke="none"
+                     transform="rotate(-32 -9.6 -22)"/>
+          </g>
+          <g transform="rotate(-8 0 4)">
+            <path d="M0 4 C-1.5 -5 -4 -13 -8.5 -20"/>
+            <ellipse cx="-9.6" cy="-22" rx="1.5" ry="3.6" fill="currentColor" stroke="none"
+                     transform="rotate(-32 -9.6 -22)"/>
+          </g>
+          <g transform="rotate(8 0 4) scale(-1 1)">
+            <path d="M0 4 C-1.5 -5 -4 -13 -8.5 -20"/>
+            <ellipse cx="-9.6" cy="-22" rx="1.5" ry="3.6" fill="currentColor" stroke="none"
+                     transform="rotate(-32 -9.6 -22)"/>
+          </g>
+          <g transform="rotate(25 0 4) scale(-1 1)">
+            <path d="M0 4 C-1.5 -5 -4 -13 -8.5 -20"/>
+            <ellipse cx="-9.6" cy="-22" rx="1.5" ry="3.6" fill="currentColor" stroke="none"
+                     transform="rotate(-32 -9.6 -22)"/>
+          </g>
+          <g transform="rotate(46 0 4) scale(-1 1)">
+            <path d="M0 4 C-1.5 -5 -4 -13 -8.5 -20"/>
+            <ellipse cx="-9.6" cy="-22" rx="1.5" ry="3.6" fill="currentColor" stroke="none"
+                     transform="rotate(-32 -9.6 -22)"/>
+          </g>
+          <!-- pistil -->
+          <path d="M0 4 C.5 -6 1.2 -16 2 -26"/>
+          <circle cx="2.2" cy="-27.5" r="1.5" fill="currentColor" stroke="none"/>
+        </g>
+
+        <circle cx="0" cy="4" r="2.2"/>
+      </g>
+    </symbol>
+
+    <!-- ── lily in profile / half-open ── -->
+    <symbol id="lily-side" viewBox="-40 -46 80 92">
+      <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M-2 16 C-16 6 -28 -12 -30 -34 C-20 -20 -10 -6 -3 8Z"/>
+        <path d="M0 16 C-6 -2 -8 -22 -4 -40 C4 -24 5 -4 3 12Z"/>
+        <path d="M2 16 C12 4 24 -12 30 -32 C24 -14 14 0 4 10Z"/>
+        <path d="M-1 15 C-12 16 -22 22 -28 32 C-18 30 -8 24 -2 18Z"/>
+        <path d="M1 15 C11 17 20 24 25 34 C15 31 6 25 2 18Z"/>
+        <path d="M-1 13 C-8 4 -16 -8 -22 -22 M1 13 C4 2 8 -12 12 -24"/>
+        <g stroke-width=".85">
+          <path d="M0 15 C-4 8 -10 2 -16 -3"/>
+          <path d="M0 15 C-2 6 -4 -2 -6 -10"/>
+          <path d="M0 15 C3 7 7 1 12 -4"/>
+          <ellipse cx="-17.4" cy="-4" rx="1.4" ry="3.2" fill="currentColor" stroke="none" transform="rotate(-46 -17.4 -4)"/>
+          <ellipse cx="-6.6" cy="-11.6" rx="1.4" ry="3.2" fill="currentColor" stroke="none" transform="rotate(-14 -6.6 -11.6)"/>
+          <ellipse cx="13.2" cy="-5.4" rx="1.4" ry="3.2" fill="currentColor" stroke="none" transform="rotate(42 13.2 -5.4)"/>
+        </g>
+        <path d="M0 16 C-1 26 -2 34 -1 44"/>
+        <circle cx="0" cy="15" r="2"/>
+      </g>
+    </symbol>
+
+    <!-- ── lily bud on stem ── -->
+    <symbol id="bud" viewBox="-12 -30 24 60">
+      <g fill="none" stroke="currentColor" stroke-width=".95" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M0 -26 C7 -17 7.5 -2 1 8 C-6.5 -2 -7 -17 0 -26Z"/>
+        <path d="M0 -25 C3 -16 3.4 -4 1 7"/>
+        <path d="M0 -25 C-3 -16 -3.4 -4 -1 7"/>
+        <path d="M1 8 C1 16 0 22 -1 28"/>
+        <path d="M1 10 C4 12 7 16 8 21 M0 13 C-3 15 -6 19 -7 24"/>
+      </g>
+    </symbol>
+
+    <!-- ── small daisy / aster ── -->
+    <symbol id="daisy" viewBox="-26 -26 52 52">
+      <g fill="none" stroke="currentColor" stroke-width=".8" stroke-linejoin="round">
+        <g id="daisy-rays">
+          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z"/>
+          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(24)"/>
+          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(48)"/>
+          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(72)"/>
+          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(96)"/>
+          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(120)"/>
+          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(144)"/>
+          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(168)"/>
+          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(192)"/>
+          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(216)"/>
+          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(240)"/>
+          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(264)"/>
+          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(288)"/>
+          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(312)"/>
+          <path d="M0 -7 C-2.6 -12 -2.2 -18 0 -22 C2.2 -18 2.6 -12 0 -7Z" transform="rotate(336)"/>
+        </g>
+        <circle cx="0" cy="0" r="6.4"/>
+        <g fill="currentColor" stroke="none">
+          <circle cx="-2.6" cy="-2.2" r=".62"/><circle cx=".4" cy="-3.4" r=".62"/>
+          <circle cx="3" cy="-1.4" r=".62"/><circle cx="-3.4" cy="1" r=".62"/>
+          <circle cx="-.6" cy="-.2" r=".62"/><circle cx="2.4" cy="1.8" r=".62"/>
+          <circle cx="-1.6" cy="3.2" r=".62"/><circle cx="1.2" cy="3.6" r=".62"/>
+        </g>
+      </g>
+    </symbol>
+
+    <!-- ── lanceolate leaf ── -->
+    <symbol id="leaf" viewBox="-18 -48 36 96">
+      <g fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round">
+        <path d="M0 45 C-15 22 -16 -14 0 -45 C16 -14 15 22 0 45Z"/>
+        <path d="M0 41 L0 -39"/>
+        <path d="M0 30 C-6 26 -9 20 -10 13 M0 30 C6 26 9 20 10 13
+                 M0 15 C-6 11 -9 5 -10 -2 M0 15 C6 11 9 5 10 -2
+                 M0 0 C-5 -4 -7 -10 -8 -16 M0 0 C5 -4 7 -10 8 -16
+                 M0 -16 C-4 -19 -5 -24 -6 -28 M0 -16 C4 -19 5 -24 6 -28"/>
+      </g>
+    </symbol>
+
+    <!-- ── butterfly with marginal spots ── -->
+    <symbol id="butterfly" viewBox="-36 -32 72 64">
+      <g fill="none" stroke="currentColor" stroke-width=".85" stroke-linecap="round" stroke-linejoin="round">
+        <!-- forewings -->
+        <path d="M-1 -6 C-11 -29 -31 -31 -32 -16 C-33 -5 -19 -2 -2 -1Z"/>
+        <path d="M1 -6 C11 -29 31 -31 32 -16 C33 -5 19 -2 2 -1Z"/>
+        <!-- hindwings -->
+        <path d="M-2 1 C-17 3 -27 13 -23 23 C-18 32 -6 21 -1 6Z"/>
+        <path d="M2 1 C17 3 27 13 23 23 C18 32 6 21 1 6Z"/>
+        <!-- veins -->
+        <path d="M-4 -14 C-13 -20 -21 -23 -27 -22 M-5 -10 C-14 -13 -22 -15 -28 -14
+                 M-4 -17 C-10 -22 -16 -26 -22 -27
+                 M4 -14 C13 -20 21 -23 27 -22 M5 -10 C14 -13 22 -15 28 -14
+                 M4 -17 C10 -22 16 -26 22 -27
+                 M-4 8 C-10 12 -16 17 -19 22 M-3 5 C-9 7 -15 12 -19 17
+                 M4 8 C10 12 16 17 19 22 M3 5 C9 7 15 12 19 17"/>
+        <!-- marginal spots -->
+        <g fill="currentColor" stroke="none">
+          <circle cx="-28" cy="-19" r=".85"/><circle cx="-24" cy="-24" r=".85"/>
+          <circle cx="-19" cy="-27" r=".85"/><circle cx="-13" cy="-27" r=".8"/>
+          <circle cx="28" cy="-19" r=".85"/><circle cx="24" cy="-24" r=".85"/>
+          <circle cx="19" cy="-27" r=".85"/><circle cx="13" cy="-27" r=".8"/>
+          <circle cx="-21" cy="21" r=".8"/><circle cx="-16" cy="24" r=".8"/>
+          <circle cx="-10" cy="22" r=".75"/>
+          <circle cx="21" cy="21" r=".8"/><circle cx="16" cy="24" r=".8"/>
+          <circle cx="10" cy="22" r=".75"/>
+        </g>
+        <!-- body -->
+        <path d="M0 -8 C-1.8 -2 -1.8 7 0 13 C1.8 7 1.8 -2 0 -8Z"/>
+        <path d="M0 -6 L0 11"/>
+        <!-- clubbed antennae -->
+        <path d="M-.8 -9 C-4 -16 -8 -21 -13 -24 M.8 -9 C4 -16 8 -21 13 -24"/>
+        <circle cx="-13.8" cy="-24.6" r="1.1" fill="currentColor" stroke="none"/>
+        <circle cx="13.8" cy="-24.6" r="1.1" fill="currentColor" stroke="none"/>
+      </g>
+    </symbol>
+
+    <!-- ── hydrangea head: dense cluster of florets ── -->
+    <symbol id="hydrangea" viewBox="-64 -64 128 128">
+      <g>
+        <!-- back row, smaller -->
+        <use href="#floret" x="-56" y="-34" width="22" height="22"/>
+        <use href="#floret" x="-38" y="-52" width="22" height="22"/>
+        <use href="#floret" x="-16" y="-58" width="22" height="22"/>
+        <use href="#floret" x="6"   y="-54" width="22" height="22"/>
+        <use href="#floret" x="26"  y="-38" width="22" height="22"/>
+        <use href="#floret" x="38"  y="-16" width="22" height="22"/>
+        <use href="#floret" x="-58" y="-10" width="22" height="22"/>
+
+        <!-- middle row -->
+        <use href="#floret" x="-44" y="-24" width="26" height="26"/>
+        <use href="#floret" x="-24" y="-38" width="26" height="26"/>
+        <use href="#floret" x="-2"  y="-42" width="26" height="26"/>
+        <use href="#floret" x="18"  y="-28" width="26" height="26"/>
+        <use href="#floret" x="30"  y="-6"  width="26" height="26"/>
+        <use href="#floret" x="-50" y="2"   width="26" height="26"/>
+        <use href="#floret" x="-32" y="16"  width="26" height="26"/>
+
+        <!-- front row, largest -->
+        <use href="#floret" x="-30" y="-12" width="30" height="30"/>
+        <use href="#floret" x="-6"  y="-18" width="30" height="30"/>
+        <use href="#floret" x="14"  y="2"   width="30" height="30"/>
+        <use href="#floret" x="-14" y="10"  width="30" height="30"/>
+        <use href="#floret" x="8"   y="24"  width="30" height="30"/>
+        <use href="#floret" x="-34" y="34"  width="28" height="28"/>
+        <use href="#floret" x="-10" y="38"  width="26" height="26"/>
+
+        <!-- buds tucked into the gaps -->
+        <use href="#floret-bud" x="-46" y="-44" width="12" height="12"/>
+        <use href="#floret-bud" x="20"  y="-48" width="12" height="12"/>
+        <use href="#floret-bud" x="42"  y="10"  width="12" height="12"/>
+        <use href="#floret-bud" x="-52" y="24"  width="12" height="12"/>
+        <use href="#floret-bud" x="16"  y="44"  width="12" height="12"/>
+      </g>
+    </symbol>
+
+    <!-- ── stem with a pair of small leaves ── -->
+    <symbol id="sprig" viewBox="-20 -40 40 80">
+      <g fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M0 38 C-2 20 -1 0 2 -36"/>
+        <path d="M0 22 C-8 18 -13 10 -14 1 C-6 4 -1 12 0 20Z"/>
+        <path d="M1 8 C9 5 15 -3 15 -12 C7 -8 2 0 1 7Z"/>
+        <path d="M1 -6 C-6 -9 -11 -16 -11 -24 C-4 -20 0 -13 1 -6Z"/>
+        <path d="M0 20 L-12 2 M1 7 L13 -10 M1 -6 L-9 -21"/>
+      </g>
+    </symbol>
+
+  </defs>
+</svg>
+
+<div class="frame" aria-hidden="true"></div>
+
+<main class="sheet">
+
+  <!-- ══════════ COVER ══════════ -->
+  <section class="cover">
+    <div class="botanical bot-tl enter enter--bot d1" aria-hidden="true">
+      <svg viewBox="0 0 320 360">
+        <!-- back layer: leaves and sprigs -->
+        <use href="#leaf" x="6" y="150" width="66" height="185" transform="rotate(-26 39 242)"/>
+        <use href="#leaf" x="164" y="0" width="58" height="165" transform="rotate(40 193 82)"/>
+        <use href="#leaf" x="96" y="240" width="52" height="150" transform="rotate(-8 122 315)"/>
+        <use href="#sprig" x="222" y="130" width="62" height="125" transform="rotate(26 253 192)"/>
+        <use href="#sprig" x="52" y="8" width="54" height="110" transform="rotate(-40 79 63)"/>
+
+        <!-- mid layer: hydrangea head -->
+        <use href="#hydrangea" x="4" y="6" width="172" height="172"/>
+
+        <!-- daisies and buds threading through -->
+        <use href="#daisy" x="176" y="18" width="52" height="52"/>
+        <use href="#daisy" x="12" y="168" width="40" height="40"/>
+        <use href="#daisy" x="232" y="96" width="34" height="34"/>
+        <use href="#bud" x="200" y="128" width="34" height="82" transform="rotate(32 217 169)"/>
+        <use href="#bud" x="58" y="228" width="30" height="74" transform="rotate(-18 73 265)"/>
+
+        <!-- front layer: lilies -->
+        <use href="#lily" x="104" y="92" width="180" height="188" transform="rotate(16 194 186)"/>
+        <use href="#lily-side" x="34" y="196" width="118" height="136" transform="rotate(-24 93 264)"/>
+
+        <!-- butterflies -->
+        <use href="#butterfly" x="206" y="42" width="72" height="64" transform="rotate(-14 242 74)"/>
+        <use href="#butterfly" x="120" y="4" width="52" height="46" transform="rotate(22 146 27)"/>
+      </svg>
+    </div>
+
+    <div class="botanical bot-br enter enter--bot d1" aria-hidden="true">
+      <svg viewBox="0 0 320 360">
+        <use href="#leaf" x="14" y="166" width="62" height="176" transform="rotate(-20 45 254)"/>
+        <use href="#leaf" x="178" y="10" width="56" height="158" transform="rotate(44 206 89)"/>
+        <use href="#sprig" x="212" y="146" width="58" height="118" transform="rotate(20 241 205)"/>
+        <use href="#sprig" x="66" y="18" width="50" height="102" transform="rotate(-34 91 69)"/>
+
+        <use href="#hydrangea" x="16" y="20" width="158" height="158"/>
+
+        <use href="#daisy" x="188" y="34" width="46" height="46"/>
+        <use href="#daisy" x="24" y="182" width="36" height="36"/>
+        <use href="#bud" x="190" y="140" width="32" height="78" transform="rotate(28 206 179)"/>
+        <use href="#bud" x="76" y="240" width="28" height="70" transform="rotate(-14 90 275)"/>
+
+        <use href="#lily" x="112" y="84" width="192" height="200" transform="rotate(12 208 184)"/>
+        <use href="#lily-side" x="44" y="212" width="106" height="122" transform="rotate(-30 97 273)"/>
+
+        <use href="#butterfly" x="16" y="2" width="66" height="58" transform="rotate(18 49 31)"/>
+        <use href="#butterfly" x="238" y="118" width="48" height="42" transform="rotate(-24 262 139)"/>
+      </svg>
+    </div>
+
+    <div class="plate enter enter--plate d2">
+      <p class="eyebrow">Majlis Kesyukuran</p>
+
+      <div class="monogram" aria-label="A dan A">
+        <span class="glyph">A</span>
+        <span class="amp">&amp;</span>
+        <span class="glyph">A</span>
+      </div>
+
+      <svg class="flourish" viewBox="0 0 60 10" fill="none" stroke="currentColor" stroke-width=".9" aria-hidden="true">
+        <path d="M2 5 H20 M40 5 H58"/>
+        <path d="M20 5 C24 1 27 1 30 5 C33 9 36 9 40 5 C36 1 33 1 30 5 C27 9 24 9 20 5Z"/>
+      </svg>
+
+      <p class="names">ANIS &amp; ATIQ</p>
+      <p class="when">SABTU &nbsp;|&nbsp; 26.09.2026</p>
+    </div>
+
+    <p class="scroll-cue enter d3">Tatal<span></span></p>
+  </section>
+
+  <!-- ══════════ SALAM ══════════ -->
+  <section class="panel reveal">
+    <p class="bismillah">السلام عليكم</p>
+    <p class="eyebrow">Assalamualaikum W.B.T</p>
+
+    <p class="hosts">
+      ZAKARIA BIN MUSTAPHA<br>
+      <span class="amp-sm">&amp;</span><br>
+      ROZIAH BINTI YAACOB
+    </p>
+
+    <hr class="rule">
+
+    <p class="body-txt">
+      Dengan segala hormatnya menjemput<br>
+      Dato' / Datin / Tuan / Puan / Encik / Cik<br>
+      ke majlis perkahwinan puteri kami
+    </p>
+
+    <div class="couple">
+      <p class="script name">Anis Norliyana Binti Hazizun</p>
+      <p class="heart">&#10084;</p>
+      <p class="script name">Nuural Atiqullah Bin Rahaimi</p>
+    </div>
+  </section>
+
+  <!-- ══════════ BUTIRAN ══════════ -->
+  <section class="panel panel--tight reveal">
+    <hr class="rule">
+
+    <dl class="detail">
+      <dt>Tarikh</dt>
+      <dd>
+        SABTU
+        <span class="big-date">26</span>
+        SEPTEMBER 2026
+        <span class="hijri" id="hijri">14 Rabiulakhir 1448H</span>
+      </dd>
+    </dl>
+
+    <dl class="detail">
+      <dt>Masa</dt>
+      <dd>12:00 PM &ndash; 5:00 PM</dd>
+    </dl>
+
+    <dl class="detail">
+      <dt>Lokasi</dt>
+      <dd>
+        Lot 1254, Kampung Kok Bedullah<br>
+        16200 Tumpat, Kelantan
+      </dd>
+    </dl>
+
+    <a class="btn btn--gold" id="mapBtn" href="#" target="_blank" rel="noopener">Buka lokasi dalam peta</a>
+  </section>
+
+  <!-- ══════════ ATURCARA ══════════ -->
+  <section class="panel panel--tight reveal">
+    <hr class="rule">
+    <p class="eyebrow">Aturcara Majlis</p>
+
+    <ol class="agenda">
+      <li><time>12:00 PM</time><p>Ketibaan tetamu</p></li>
+      <li><time>1:00 PM</time><p>Ketibaan pengantin</p></li>
+      <li><time>5:00 PM</time><p>Majlis bersurai</p></li>
+    </ol>
+  </section>
+
+  <!-- ══════════ COUNTDOWN ══════════ -->
+  <section class="panel panel--tight reveal">
+    <hr class="rule">
+    <p class="eyebrow">Majlis akan bermula</p>
+
+    <div class="countdown" id="countdown" role="timer">
+      <div class="unit"><b data-cd="d">—</b><small>Hari</small></div>
+      <div class="unit"><b data-cd="h">—</b><small>Jam</small></div>
+      <div class="unit"><b data-cd="m">—</b><small>Minit</small></div>
+      <div class="unit"><b data-cd="s">—</b><small>Saat</small></div>
+    </div>
+
+    <a class="btn" id="icsBtn" href="#" download="Anis-Atiq-26Sep2026.ics">Simpan ke kalendar</a>
+  </section>
+
+  <!-- ══════════ KEHADIRAN ══════════ -->
+  <section class="panel panel--tight reveal" id="kehadiran">
+    <hr class="rule">
+    <p class="eyebrow">Kehadiran</p>
+
+    <p class="headcount" id="headcount">—</p>
+    <p class="headcount-label" id="headcountLabel">orang telah mengesahkan</p>
+
+    <button class="btn btn--gold" type="button" data-open="tabRsvp">Sahkan kehadiran anda</button>
+  </section>
+
+  <!-- ══════════ UCAPAN ══════════ -->
+  <section class="panel panel--tight reveal" id="ucapan">
+    <hr class="rule">
+    <p class="eyebrow">Ucapan</p>
+
+    <ul class="wishes" id="wishes"></ul>
+    <p class="note" id="wishNote" hidden></p>
+
+    <button class="btn" type="button" id="moreWishes" hidden>Lihat semua ucapan</button>
+  </section>
+
+  <!-- ══════════ PENUTUP ══════════ -->
+  <section class="panel reveal" style="overflow:hidden">
+    <div class="botanical bot-mid" aria-hidden="true">
+      <svg viewBox="0 0 220 280">
+        <use href="#leaf" x="96" y="112" width="54" height="152" transform="rotate(22 123 188)"/>
+        <use href="#sprig" x="4" y="140" width="52" height="106" transform="rotate(-24 30 193)"/>
+        <use href="#hydrangea" x="14" y="14" width="134" height="134"/>
+        <use href="#daisy" x="146" y="30" width="42" height="42"/>
+        <use href="#bud" x="158" y="118" width="30" height="72" transform="rotate(24 173 154)"/>
+        <use href="#lily-side" x="82" y="150" width="100" height="116" transform="rotate(14 132 208)"/>
+        <use href="#butterfly" x="150" y="76" width="50" height="44" transform="rotate(-16 175 98)"/>
+      </svg>
+    </div>
+
+    <hr class="rule">
+    <p class="doa">
+      Semoga dengan kehadiran para hadirin akan memeriahkan lagi majlis ini
+      &amp; mendapat keberkatanNya.
+    </p>
+    <p class="signoff">Anis &amp; Atiq &middot; 26.09.2026</p>
+  </section>
+
+</main>
+
+<!-- ══════════ TAB: RSVP ══════════ -->
+<div class="scrim" id="scrim" hidden></div>
+
+<section class="tabpanel" id="tabRsvp" role="dialog" aria-modal="true" aria-labelledby="hRsvp" aria-hidden="true">
+  <header class="tab-head">
+    <h2 id="hRsvp">Sahkan Kehadiran</h2>
+    <button class="tab-close" type="button" data-close aria-label="Tutup">&#10005;</button>
+  </header>
+
+  <div class="tab-body">
+    <p class="tally" id="tally">—</p>
+    <p class="tally-label">orang telah mengesahkan</p>
+
+    <div class="form">
+      <div class="field">
+        <label for="rNama">Nama</label>
+        <input id="rNama" type="text" autocomplete="name" placeholder="Nama penuh anda">
+      </div>
+
+      <div class="field">
+        <label for="rTel">No. telefon</label>
+        <input id="rTel" type="tel" inputmode="tel" autocomplete="tel" placeholder="01X-XXX XXXX">
+      </div>
+
+      <div class="field">
+        <label for="rPax">Bilangan hadir</label>
+        <input id="rPax" type="number" min="1" max="30" value="1" inputmode="numeric">
+      </div>
+
+      <div class="field">
+        <label id="lblHadir">Kehadiran</label>
+        <div class="choice" role="group" aria-labelledby="lblHadir">
+          <button type="button" id="btnYes" aria-pressed="true">Hadir</button>
+          <button type="button" id="btnNo" aria-pressed="false">Tidak hadir</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="rUcap">Ucapan <span style="text-transform:none;letter-spacing:.02em">(pilihan)</span></label>
+        <textarea id="rUcap" maxlength="220" placeholder="Doa dan ucapan untuk pengantin"></textarea>
+      </div>
+
+      <button class="btn btn--gold" id="rSend" type="button">Hantar</button>
+      <p class="note" id="rNote" hidden></p>
+    </div>
+
+    <ul class="guests" id="guests" aria-live="polite"></ul>
+    <p class="note" id="listNote" hidden>Belum ada pengesahan. Jadilah yang pertama.</p>
+  </div>
+</section>
+
+<!-- ══════════ TAB: HADIAH ══════════ -->
+<section class="tabpanel" id="tabHadiah" role="dialog" aria-modal="true" aria-labelledby="hHadiah" aria-hidden="true">
+  <header class="tab-head">
+    <h2 id="hHadiah">Salam Kaut</h2>
+    <button class="tab-close" type="button" data-close aria-label="Tutup">&#10005;</button>
+  </header>
+
+  <div class="tab-body">
+    <p class="body-txt">
+      Kehadiran anda sudah cukup bermakna. Jika ingin menghulurkan sedikit tanda kasih,
+      imbas kod di bawah.
+    </p>
+
+    <div class="qr-card">
+      <img id="qrImg" src="qr-hadiah.png" alt="Kod QR untuk pemberian hadiah" hidden>
+      <div class="qr-slot" id="qrSlot">
+        Letakkan fail <b>qr-hadiah.png</b><br>di folder yang sama dengan kad ini
+      </div>
+      <p class="qr-name" id="qrName">Nuural Atiqullah Bin Rahaimi</p>
+      <p class="qr-bank" id="qrBank">DuitNow QR</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TAB: HUBUNGI ══════════ -->
+<section class="tabpanel" id="tabHubungi" role="dialog" aria-modal="true" aria-labelledby="hHubungi" aria-hidden="true">
+  <header class="tab-head">
+    <h2 id="hHubungi">Untuk Dihubungi</h2>
+    <button class="tab-close" type="button" data-close aria-label="Tutup">&#10005;</button>
+  </header>
+
+  <div class="tab-body">
+    <p class="body-txt">
+      Sebarang pertanyaan mengenai majlis, sila hubungi mana-mana wakil keluarga di bawah.
+    </p>
+
+    <div class="contacts">
+      <div class="contact-card">
+        <span class="who"><b>Kakyah</b><small>Ibu pengantin &middot; 017-979 2270</small></span>
+        <div class="contact-acts">
+          <a href="tel:+60179792270">Panggil</a>
+          <a href="https://wa.me/60179792270" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <span class="who"><b>Akmal</b><small>Abang pengantin &middot; 011-6109 5800</small></span>
+        <div class="contact-acts">
+          <a href="tel:+601161095800">Panggil</a>
+          <a href="https://wa.me/601161095800" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <span class="who"><b>Alyaa'</b><small>Adik pengantin &middot; 010-382 3273</small></span>
+        <div class="contact-acts">
+          <a href="tel:+60103823273">Panggil</a>
+          <a href="https://wa.me/60103823273" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TAB: LOKASI ══════════ -->
+<section class="tabpanel" id="tabLokasi" role="dialog" aria-modal="true" aria-labelledby="hLokasi" aria-hidden="true">
+  <header class="tab-head">
+    <h2 id="hLokasi">Lokasi Majlis</h2>
+    <button class="tab-close" type="button" data-close aria-label="Tutup">&#10005;</button>
+  </header>
+
+  <div class="tab-body">
+    <p class="addr">
+      Lot 1254, Kampung Kok Bedullah<br>
+      16200 Tumpat, Kelantan
+    </p>
+
+    <div class="map-embed">
+      <iframe id="mapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Peta lokasi majlis"></iframe>
+    </div>
+
+    <a class="btn btn--gold" id="gmapBtn" href="#" target="_blank" rel="noopener">Buka dalam Google Maps</a>
+    <a class="btn" id="wazeBtn" href="#" target="_blank" rel="noopener">Buka dalam Waze</a>
+    <button class="btn" type="button" id="copyAddr">Salin alamat</button>
+    <p class="note" id="copyNote" hidden></p>
+  </div>
+</section>
+
+<!-- ══════════ ACTION BAR ══════════ -->
+<nav class="bar" aria-label="Tindakan pantas">
+  <button type="button" data-open="tabHubungi" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a1 1 0 01-1 1A16 16 0 014 5a1 1 0 011-1z" stroke-linejoin="round"/></svg>
+    Hubungi
+  </button>
+  <a href="#" id="barIcs">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+    Kalendar
+  </a>
+  <button type="button" data-open="tabRsvp" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z" stroke-linejoin="round"/><path d="M4 7l8 6 8-6"/></svg>
+    RSVP
+  </button>
+  <button type="button" data-open="tabHadiah" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 12h18M12 8v13"/><path d="M12 8S9.5 3.5 7.5 4.5 8 8 12 8zM12 8s2.5-4.5 4.5-3.5S16 8 12 8z"/></svg>
+    Hadiah
+  </button>
+  <button type="button" data-open="tabLokasi" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 10-14 0c0 4.7 7 11 7 11z" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5"/></svg>
+    Lokasi
+  </button>
+</nav>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   TUKAR DI SINI — the only lines you need to edit
+   ═══════════════════════════════════════════════════════ */
+const VENUE   = "Lot 1254, Kampung Kok Bedullah, 16200 Tumpat, Kelantan";
+const MAP_URL = "";               // paste your Google Maps share link
+const RSVP_WA = "60179792270";    // fallback WhatsApp number
+const WHEN    = "2026-09-26T12:00:00+08:00";
+const ENDS    = "2026-09-26T17:00:00+08:00";
+const HIJRI   = "14 Rabiulakhir 1448H";   // or "15 Rabiulakhir 1448H"
+
+// Paste your Google Apps Script /exec URL here to turn on the live
+// attendee list. Leave empty and RSVP falls back to WhatsApp.
+const RSVP_API = "";
+/* ═══════════════════════════════════════════════════════ */
+
+const $ = id => document.getElementById(id);
+
+$("hijri").textContent = HIJRI;
+
+/* — maps — */
+const mapHref  = MAP_URL || "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(VENUE);
+const wazeHref = "https://waze.com/ul?q=" + encodeURIComponent(VENUE) + "&navigate=yes";
+
+$("mapBtn").href  = mapHref;
+$("gmapBtn").href = mapHref;
+$("wazeBtn").href = wazeHref;
+
+// embedded preview — loads only when the Lokasi panel is first opened
+let mapLoaded = false;
+function loadMap(){
+  if (mapLoaded) return;
+  $("mapFrame").src = "https://maps.google.com/maps?q=" + encodeURIComponent(VENUE) + "&z=15&output=embed";
+  mapLoaded = true;
+}
+
+$("copyAddr").addEventListener("click", async () => {
+  const note = $("copyNote");
+  try {
+    await navigator.clipboard.writeText(VENUE);
+    note.textContent = "Alamat telah disalin.";
+    note.classList.remove("note--warn");
+  } catch {
+    note.textContent = "Salin gagal. Sila salin alamat di atas secara manual.";
+    note.classList.add("note--warn");
+  }
+  note.hidden = false;
+});
+
+/* — gift QR: show the image only if the file actually exists — */
+const qrImg = $("qrImg");
+qrImg.addEventListener("load", () => { qrImg.hidden = false; $("qrSlot").hidden = true; });
+qrImg.addEventListener("error", () => { qrImg.hidden = true; });
+
+/* — countdown — */
+const target = new Date(WHEN).getTime();
+const cd = {
+  d: document.querySelector('[data-cd="d"]'),
+  h: document.querySelector('[data-cd="h"]'),
+  m: document.querySelector('[data-cd="m"]'),
+  s: document.querySelector('[data-cd="s"]')
+};
+const pad = n => String(n).padStart(2, "0");
+
+function tick(){
+  const gap = target - Date.now();
+  if (gap <= 0){
+    $("countdown").innerHTML = '<p class="doa" style="font-size:1.05rem">Alhamdulillah, majlis telah berlangsung.</p>';
+    clearInterval(timer);
+    return;
+  }
+  const s = Math.floor(gap / 1000);
+  cd.d.textContent = Math.floor(s / 86400);
+  cd.h.textContent = pad(Math.floor(s / 3600) % 24);
+  cd.m.textContent = pad(Math.floor(s / 60) % 60);
+  cd.s.textContent = pad(s % 60);
+}
+tick();
+const timer = setInterval(tick, 1000);
+
+/* — calendar file — */
+const stamp = iso => new Date(iso).toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+const ics = [
+  "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Anis dan Atiq//Kad Digital//MS",
+  "BEGIN:VEVENT","UID:anis-atiq-26092026@kad",
+  "DTSTAMP:" + stamp(new Date().toISOString()),
+  "DTSTART:" + stamp(WHEN),
+  "DTEND:" + stamp(ENDS),
+  "SUMMARY:Majlis Kesyukuran Anis & Atiq",
+  "LOCATION:" + VENUE.replace(/,/g, "\\,"),
+  "DESCRIPTION:Majlis Kesyukuran Anis Norliyana & Nuural Atiqullah",
+  "BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY",
+  "DESCRIPTION:Majlis Anis & Atiq esok","END:VALARM",
+  "END:VEVENT","END:VCALENDAR"
+].join("\r\n");
+
+const icsHref = URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" }));
+$("icsBtn").href = icsHref;
+$("barIcs").href = icsHref;
+$("barIcs").setAttribute("download", "Anis-Atiq-26Sep2026.ics");
+
+/* ═══════════════════════════════════════════════════════
+   RSVP
+   ═══════════════════════════════════════════════════════ */
+let attending = true;
+
+$("btnYes").addEventListener("click", () => setChoice(true));
+$("btnNo").addEventListener("click", () => setChoice(false));
+
+function setChoice(v){
+  attending = v;
+  $("btnYes").setAttribute("aria-pressed", String(v));
+  $("btnNo").setAttribute("aria-pressed", String(!v));
+  $("rPax").disabled = !v;
+}
+
+function say(msg, warn){
+  const n = $("rNote");
+  n.textContent = msg;
+  n.hidden = false;
+  n.classList.toggle("note--warn", !!warn);
+}
+
+function esc(s){
+  return String(s).replace(/[&<>"']/g, c =>
+    ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+}
+
+function render(rows){
+  const going = rows.filter(r => r.hadir);
+  const total = going.reduce((sum, r) => sum + (Number(r.pax) || 1), 0);
+
+  $("tally").textContent = total;
+  $("headcount").textContent = total;
+
+  // attendee list inside the RSVP panel
+  $("guests").innerHTML = rows.map(r => `
+    <li>
+      <div class="g-top">
+        <span class="g-name">${esc(r.nama)}</span>
+        <span class="g-pax">${r.hadir ? (Number(r.pax) || 1) + " org" : "Tidak hadir"}</span>
+      </div>
+      ${r.ucapan ? `<p class="g-msg">&ldquo;${esc(r.ucapan)}&rdquo;</p>` : ""}
+    </li>`).join("");
+
+  $("listNote").hidden = rows.length > 0;
+
+  // wishing wall on the scroll
+  const withMsg = rows.filter(r => r.ucapan && r.ucapan.trim());
+  const wall = $("wishes");
+
+  wall.innerHTML = withMsg.map(r => `
+    <li>
+      <blockquote>${esc(r.ucapan)}</blockquote>
+      <span class="from">${esc(r.nama)}</span>
+    </li>`).join("");
+
+  $("wishNote").hidden = withMsg.length > 0;
+  $("wishNote").textContent = "Belum ada ucapan. Tinggalkan yang pertama melalui borang RSVP.";
+
+  const many = withMsg.length > 3;
+  $("moreWishes").hidden = !many;
+  wall.classList.toggle("wishes--collapsed", many);
+  $("moreWishes").textContent = "Lihat semua ucapan";
+}
+
+$("moreWishes").addEventListener("click", () => {
+  const wall = $("wishes");
+  const collapsed = wall.classList.toggle("wishes--collapsed");
+  $("moreWishes").textContent = collapsed ? "Lihat semua ucapan" : "Tunjukkan kurang";
+});
+
+async function loadList(){
+  if (!RSVP_API) {
+    $("tally").textContent = "—";
+    $("headcount").textContent = "—";
+    $("headcountLabel").textContent = "senarai belum diaktifkan";
+    $("listNote").hidden = false;
+    $("listNote").textContent = "Senarai kehadiran belum diaktifkan.";
+    $("wishNote").hidden = false;
+    $("wishNote").textContent = "Ruangan ucapan belum diaktifkan.";
+    return;
+  }
+  try {
+    const res = await fetch(RSVP_API);
+    const data = await res.json();
+    render(Array.isArray(data) ? data : []);
+  } catch {
+    $("listNote").hidden = false;
+    $("listNote").textContent = "Senarai tidak dapat dimuatkan sekarang.";
+    $("wishNote").hidden = false;
+    $("wishNote").textContent = "Ucapan tidak dapat dimuatkan sekarang.";
+  }
+}
+
+$("rSend").addEventListener("click", async () => {
+  const nama = $("rNama").value.trim();
+  const tel  = $("rTel").value.trim();
+  const pax  = Math.max(1, Number($("rPax").value) || 1);
+  const ucap = $("rUcap").value.trim();
+
+  if (nama.length < 2) return say("Sila isi nama anda.", true);
+  if (tel.replace(/\D/g, "").length < 9) return say("Sila isi nombor telefon yang sah.", true);
+
+  // No backend configured → hand off to WhatsApp
+  if (!RSVP_API) {
+    const text = encodeURIComponent(
+      `Assalamualaikum. Pengesahan kehadiran Majlis Kesyukuran Anis & Atiq (26 Sept 2026).\n\n` +
+      `Nama: ${nama}\nTelefon: ${tel}\n` +
+      `Kehadiran: ${attending ? "Hadir (" + pax + " orang)" : "Tidak dapat hadir"}` +
+      (ucap ? `\nUcapan: ${ucap}` : "")
+    );
+    window.open("https://wa.me/" + RSVP_WA + "?text=" + text, "_blank", "noopener");
+    return say("Membuka WhatsApp untuk menghantar pengesahan anda.");
+  }
+
+  const btn = $("rSend");
+  btn.disabled = true;
+  btn.textContent = "Menghantar…";
+  say("");
+
+  try {
+    await fetch(RSVP_API, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },  // avoids CORS preflight
+      body: JSON.stringify({ nama, tel, pax, hadir: attending, ucapan: ucap })
+    });
+    $("rNama").value = ""; $("rTel").value = ""; $("rUcap").value = ""; $("rPax").value = 1;
+    say("Terima kasih. Pengesahan anda telah direkodkan.");
+    loadList();
+  } catch {
+    say("Penghantaran gagal. Sila cuba lagi atau hubungi kami terus.", true);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Hantar";
+  }
+});
+
+loadList();
+
+/* ═══════════════════════════════════════════════════════
+   TAB PANELS
+   ═══════════════════════════════════════════════════════ */
+const scrim = $("scrim");
+let openPanel = null;
+let lastFocus = null;
+
+function openTab(id){
+  const p = $(id);
+  if (!p || openPanel === p) return;
+  if (openPanel) closeTab(true);
+
+  lastFocus = document.activeElement;
+  openPanel = p;
+
+  scrim.hidden = false;
+  requestAnimationFrame(() => scrim.classList.add("open"));
+
+  p.classList.add("open");
+  p.setAttribute("aria-hidden", "false");
+  document.body.classList.add("locked");
+
+  if (id === "tabLokasi") loadMap();
+
+  p.querySelector(".tab-close").focus();
+}
+
+function closeTab(silent){
+  if (!openPanel) return;
+  openPanel.classList.remove("open");
+  openPanel.setAttribute("aria-hidden", "true");
+  openPanel = null;
+
+  scrim.classList.remove("open");
+  setTimeout(() => { if (!openPanel) scrim.hidden = true; }, 320);
+  document.body.classList.remove("locked");
+
+  if (!silent && lastFocus) lastFocus.focus();
+}
+
+document.querySelectorAll("[data-open]").forEach(b =>
+  b.addEventListener("click", () => openTab(b.dataset.open)));
+
+document.querySelectorAll("[data-close]").forEach(b =>
+  b.addEventListener("click", () => closeTab()));
+
+scrim.addEventListener("click", () => closeTab());
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeTab();
+});
+
+// keep focus inside an open panel
+document.addEventListener("focusin", e => {
+  if (openPanel && !openPanel.contains(e.target)) {
+    openPanel.querySelector(".tab-close").focus();
+  }
+});
+
+/* — scroll reveals — */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+  });
+}, { threshold: .12, rootMargin: "0px 0px -8% 0px" });
+
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
