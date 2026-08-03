@@ -141,6 +141,23 @@ img,svg{display:block;max-width:100%}
 .art--tl{top:-3%;left:-20%;width:82%}
 .art--br{bottom:-2%;right:-18%;width:86%}
 
+/* small sprigs peeking in from the edges as you scroll */
+.art--side{width:38%;opacity:.13}
+.art--side img{transition:none;will-change:transform}
+.art--side.l{left:-19%}
+.art--side.r{right:-19%}
+.art--s1{top:6%}
+.art--s2{top:14%}
+.art--s3{top:4%}
+.art--s4{top:18%}
+.art--s5{top:10%}
+
+@media (min-width:560px){
+  .art--side{width:30%}
+  .art--side.l{left:-13%}
+  .art--side.r{right:-13%}
+}
+
 /* section accents, quieter */
 .art--salam{top:2%;right:-24%;width:52%;opacity:.16}
 .art--wish{bottom:4%;left:-22%;width:50%;opacity:.14}
@@ -847,7 +864,7 @@ body.locked{overflow:hidden}
       </div>
     </div>
 
-    <p class="scroll-cue enter d3">Scroll Down<span></span></p>
+    <p class="scroll-cue enter d3">Tatal<span></span></p>
   </section>
 
   <!-- ══════════ SALAM ══════════ -->
@@ -884,6 +901,10 @@ body.locked{overflow:hidden}
   <section class="panel panel--tight">
     <hr class="rule">
 
+    <div class="art art--side l art--s1" aria-hidden="true" style="transform:scaleX(-1)">
+      <img src="art/04.svg" alt="" width="968" height="1159" loading="lazy">
+    </div>
+
     <dl class="detail">
       <dt>Tarikh</dt>
       <dd>
@@ -913,6 +934,10 @@ body.locked{overflow:hidden}
   <!-- ══════════ ATURCARA ══════════ -->
   <section class="panel panel--tight">
     <hr class="rule">
+    <div class="art art--side r art--s2" aria-hidden="true">
+      <img src="art/02.svg" alt="" width="1068" height="1074" loading="lazy">
+    </div>
+
     <p class="eyebrow">Aturcara Majlis</p>
 
     <ol class="agenda">
@@ -925,6 +950,10 @@ body.locked{overflow:hidden}
   <!-- ══════════ COUNTDOWN ══════════ -->
   <section class="panel panel--tight">
     <hr class="rule">
+    <div class="art art--side l art--s3" aria-hidden="true">
+      <img src="art/01.svg" alt="" width="1135" height="1090" loading="lazy">
+    </div>
+
     <p class="eyebrow">Majlis akan bermula</p>
 
     <div class="countdown" id="countdown" role="timer">
@@ -940,6 +969,10 @@ body.locked{overflow:hidden}
   <!-- ══════════ KEHADIRAN ══════════ -->
   <section class="panel panel--tight" id="kehadiran">
     <hr class="rule">
+    <div class="art art--side r art--s4" aria-hidden="true">
+      <img src="art/04.svg" alt="" width="968" height="1159" loading="lazy">
+    </div>
+
     <p class="eyebrow">Kehadiran</p>
 
     <p class="headcount" id="headcount">—</p>
@@ -1519,6 +1552,21 @@ const cue = document.querySelector(".scroll-cue");
 const bar = $("progress");
 const reduced = matchMedia("(prefers-reduced-motion:reduce)").matches;
 
+/* side sprigs drift slowly against the text as they pass through view */
+const sides = [...document.querySelectorAll(".art--side")].map(el => ({
+  el,
+  img: el.querySelector("img")
+}));
+
+function driftSides(vh){
+  sides.forEach(s => {
+    const r = s.el.getBoundingClientRect();
+    if (r.bottom < -200 || r.top > vh + 200) return;   // offscreen, skip
+    const centred = (r.top + r.height / 2 - vh / 2) / vh;   // -1 .. 1
+    s.img.style.transform = `translateY(${(-centred * 34).toFixed(1)}px)`;
+  });
+}
+
 let ticking = false;
 
 function onScroll(){
@@ -1528,11 +1576,15 @@ function onScroll(){
   const max = document.documentElement.scrollHeight - vh;
   bar.style.width = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + "%";
 
-  if (!reduced && y < vh){
-    const p = y / vh;
-    plateWrap.style.transform = `translateY(${y * .28}px) scale(${1 - p * .07})`;
-    plateWrap.style.opacity = String(Math.max(0, 1 - p * 1.5));
-    if (cue) cue.style.opacity = String(Math.max(0, 1 - p * 3));
+  if (!reduced){
+    driftSides(vh);
+
+    if (y < vh){
+      const p = y / vh;
+      plateWrap.style.transform = `translateY(${y * .28}px) scale(${1 - p * .07})`;
+      plateWrap.style.opacity = String(Math.max(0, 1 - p * 1.5));
+      if (cue) cue.style.opacity = String(Math.max(0, 1 - p * 3));
+    }
   }
   ticking = false;
 }
