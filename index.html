@@ -8,6 +8,13 @@
 <meta name="theme-color" content="#EFEDE3">
 <meta property="og:title" content="Majlis Kesyukuran — Anis &amp; Atiq">
 <meta property="og:description" content="Sabtu, 26 September 2026 · 12:00 PM – 5:00 PM · Tumpat, Kelantan">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nuuralatiqullah-oss.github.io/invitationCard/">
+<meta property="og:image" content="https://nuuralatiqullah-oss.github.io/invitationCard/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ms_MY">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&family=Amiri&display=swap" rel="stylesheet">
@@ -1090,7 +1097,8 @@ body.locked{overflow:hidden}
    TUKAR DI SINI — the only lines you need to edit
    ═══════════════════════════════════════════════════════ */
 const VENUE   = "Lot 1254, Kampung Kok Bedullah, 16200 Tumpat, Kelantan";
-const MAP_URL = "";               // paste your Google Maps share link
+const MAP_URL = "https://maps.app.goo.gl/wD4W4nz6msmczb3L9";
+const PIN     = "6.197944,102.130788";   // exact coordinates for the map pin
 const RSVP_WA = "60179792270";    // fallback WhatsApp number
 const WHEN    = "2026-09-26T12:00:00+08:00";
 const ENDS    = "2026-09-26T17:00:00+08:00";
@@ -1107,7 +1115,9 @@ $("hijri").textContent = HIJRI;
 
 /* — maps — */
 const mapHref  = MAP_URL || "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(VENUE);
-const wazeHref = "https://waze.com/ul?q=" + encodeURIComponent(VENUE) + "&navigate=yes";
+const wazeHref = PIN
+  ? "https://waze.com/ul?ll=" + PIN + "&navigate=yes"
+  : "https://waze.com/ul?q=" + encodeURIComponent(VENUE) + "&navigate=yes";
 
 $("mapBtn").href  = mapHref;
 $("gmapBtn").href = mapHref;
@@ -1117,7 +1127,8 @@ $("wazeBtn").href = wazeHref;
 let mapLoaded = false;
 function loadMap(){
   if (mapLoaded) return;
-  $("mapFrame").src = "https://maps.google.com/maps?q=" + encodeURIComponent(VENUE) + "&z=15&output=embed";
+  const q = PIN || VENUE;
+  $("mapFrame").src = "https://maps.google.com/maps?q=" + encodeURIComponent(q) + "&z=17&output=embed";
   mapLoaded = true;
 }
 
@@ -1134,10 +1145,21 @@ $("copyAddr").addEventListener("click", async () => {
   note.hidden = false;
 });
 
-/* — gift QR: show the image only if the file actually exists — */
-const qrImg = $("qrImg");
-qrImg.addEventListener("load", () => { qrImg.hidden = false; $("qrSlot").hidden = true; });
-qrImg.addEventListener("error", () => { qrImg.hidden = true; });
+/* — gift QR: show the image, or the placeholder, but never both —
+   checked immediately as well as on load, since a cached image can finish
+   loading before this script runs and its load event would be missed. */
+const qrImg  = $("qrImg");
+const qrSlot = $("qrSlot");
+
+function syncQr(){
+  const ready = qrImg.complete && qrImg.naturalWidth > 0;
+  qrImg.hidden  = !ready;
+  qrSlot.hidden = ready;
+}
+
+qrImg.addEventListener("load", syncQr);
+qrImg.addEventListener("error", syncQr);
+syncQr();
 
 /* — countdown — */
 const target = new Date(WHEN).getTime();
