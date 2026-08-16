@@ -138,7 +138,7 @@ img,svg{display:block;max-width:100%}
    ───────────────────────────────────────────── */
 .art{
   position:absolute;
-  z-index:0;
+  z-index:-1;
   pointer-events:none;
   user-select:none;
   opacity:.88;
@@ -148,7 +148,7 @@ img,svg{display:block;max-width:100%}
 /* cover corners */
 .art--tl{top:-4%;left:-15%;width:54%}
 .art--br{bottom:-3%;right:-13%;width:56%}
-.art--bl{bottom:-2%;left:-13%;width:34%}
+.art--bl{bottom:9%;left:-11%;width:38%;opacity:.32}
 
 /* small sprigs peeking in from the edges as you scroll */
 .art--side{width:38%;opacity:.13}
@@ -166,7 +166,7 @@ img,svg{display:block;max-width:100%}
   .art--side{width:30%}
   .art--side.l{left:-13%}
   .art--side.r{right:-13%}
-  .art--bl{left:-7%;width:28%}
+  .art--bl{left:-6%;width:30%}
 }
 
 /* section accents, quieter */
@@ -175,14 +175,14 @@ img,svg{display:block;max-width:100%}
 .art--end{top:16%;right:-20%;width:46%;opacity:.18}
 .art--end2{bottom:-2%;left:-16%;width:34%;opacity:.15}
 
-/* butterfly shown fully, not faded into the background */
-.art--bf1{top:50%;right:6%;width:24%;opacity:.85}
+/* butterfly, sized up but sitting quietly behind the text */
+.art--bf1{top:38%;right:2%;width:36%;opacity:.4}
 
 @media (min-width:560px){
   .art--tl{left:-9%;width:46%}
   .art--br{right:-7%;width:48%}
   .art--end2{left:-9%;width:26%}
-  .art--bf1{width:17%}
+  .art--bf1{width:26%}
 }
 
 /* ─────────────────────────────────────────────
@@ -190,6 +190,7 @@ img,svg{display:block;max-width:100%}
    ───────────────────────────────────────────── */
 .cover{
   position:relative;
+  z-index:0;
   min-height:100svh;
   display:grid;
   place-items:center;
@@ -265,7 +266,7 @@ img,svg{display:block;max-width:100%}
 /* ─────────────────────────────────────────────
    SECTIONS
    ───────────────────────────────────────────── */
-.panel{position:relative;overflow:hidden;padding:56px var(--pad);text-align:center}
+.panel{position:relative;z-index:0;overflow:hidden;padding:56px var(--pad);text-align:center}
 .panel--tight{padding-top:14px}
 #ucapan{min-height:360px}
 
@@ -1125,7 +1126,7 @@ body.locked{overflow:hidden}
     <div class="art art--br enter d1" aria-hidden="true">
       <img src="art/22.svg" alt="" width="896" height="1497" fetchpriority="high">
     </div>
-    <div class="art art--bl enter d1" aria-hidden="true">
+    <div class="art art--bl" aria-hidden="true">
       <img src="art/butterfly_2.svg" alt="" width="914" height="1082" fetchpriority="high">
     </div>
 
