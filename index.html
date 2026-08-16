@@ -2077,6 +2077,9 @@ function onScroll(){
   const max = document.documentElement.scrollHeight - vh;
   bar.style.width = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + "%";
 
+  sweep();   // ongoing safety net — catches any reveal the observer missed
+             // during a fast flick or a layout shift mid-scroll
+
   if (!reduced){
     driftSides(vh);
 
