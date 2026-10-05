@@ -1507,6 +1507,7 @@ const cd = {
 };
 const pad = n => String(n).padStart(2, "0");
 
+let timer;
 function tick(){
   const gap = target - Date.now();
   if (gap <= 0){
@@ -1521,7 +1522,7 @@ function tick(){
   cd.s.textContent = pad(s % 60);
 }
 tick();
-const timer = setInterval(tick, 1000);
+timer = setInterval(tick, 1000);
 
 /* — calendar file — */
 const stamp = iso => new Date(iso).toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
